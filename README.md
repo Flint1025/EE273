@@ -16,3 +16,8 @@ To be implemented:
 
 
 4. grohl
+
+
+
+links between bands
+   // one person belongs to multiple bands
