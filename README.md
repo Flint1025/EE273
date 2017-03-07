@@ -18,6 +18,18 @@ To be implemented:
 4. grohl
 
 
+implement read_from_file
+
+
+implement addmember into a class
+
+links between members
+
 
 links between bands
    // one person belongs to multiple bands
+
+
+search
+
+save into file
