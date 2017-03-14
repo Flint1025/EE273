@@ -18,7 +18,7 @@ To be implemented:
 4. grohl
 
 
-implement read_from_file
+implement read_from_file (done)
 
 
 implement addmember into a class
