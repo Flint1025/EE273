@@ -6,7 +6,7 @@
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include "Member.hpp"
 #include <iostream>
@@ -42,9 +42,10 @@ void member::setGender(string g){
 	gender = g;
 }
 
-void member::setInstrument(string i, string b){
+void member::setInstrument(string i, string b, string y){
 	instruments.push_back(i);
 	bands.push_back(b);  // one to one
+	stayYears.push_back(y);
 }
 
 void member::setAge(int a){
@@ -60,10 +61,18 @@ string member::getInstrument(string bname)  // version when seeing the artilsts 
 	}
 }
 
+string member::getstayYear(string bname)  // version when seeing the artilsts inside a band
+{
+	for (list<string>::iterator it1 = stayYears.begin(), it2 = bands.begin(); it1 != stayYears.end(); ++it1, ++it2) {
+		if (*it2 == bname) return *it1;
+	}
+}
+
+
 void member::showInstruments2()  // version when seeing all the artilsts
 {
-	for (list<string>::iterator it1 = instruments.begin(), it2=bands.begin(); it1 != instruments.end(); ++it1,++it2) {
-		cout << " was " << *it1 << " in " << *it2 << endl;
+	for (list<string>::iterator it1 = instruments.begin(), it2 = bands.begin(), it3 = stayYears.begin(); it1 != instruments.end(); ++it1, ++it2, ++it3) {
+		cout << " was " << *it1 << " in " << *it2 << " from " << *it3<< endl;
 	}
 }
 

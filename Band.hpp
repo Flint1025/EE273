@@ -30,8 +30,10 @@ private:
     int BandYear[2];   //BandYear[0] -  BandYear[1]
     
     list<member> memberlist;     // a vector of pointers which points to objects
-    
+	list<string> memberyear;     // one to one corresponding
 public:
+	string getMemberyear();
+
     band();
     band(string fn); // constructor using data from a flie named fn
 

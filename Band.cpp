@@ -5,7 +5,7 @@
 //  Created by FAN XIAOFENG on 4/3/17.
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include "Band.hpp"
 #define WINDOWS
@@ -42,6 +42,10 @@ string band::getBandName(){
 	return BandName;
 }
 
+//string band::getMemberyear(){
+//	return mem;
+//}
+
 void band::showBand(){
     char c;
     cout << "Band: " << BandName << "was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
@@ -54,6 +58,7 @@ void band::showBand(){
     for (list<string>::iterator it=songslist.begin(); it!=songslist.end(); ++it) {
         cout << endl << *it;   
     }
+
     cout << endl << endl << endl << "____Press any key to continue____" << endl;
     cin >> c;
     cout << endl;
@@ -76,7 +81,7 @@ void band::showBand2(){
 	cout << "Genres: " << genres << endl;
 	cout << "Members: " << endl;
 	for (list<member>::iterator it = memberlist.begin(); it != memberlist.end(); ++it) {
-		cout << endl << it->getName() << " as the " << it->getInstrument(BandName);
+		cout << endl << it->getName() << " as the " << it->getInstrument(BandName) << " for " << it->getstayYear(BandName);
 	}
 	cout << endl << endl << "Songs: ";
 	for (list<string>::iterator it = songslist.begin(); it != songslist.end(); ++it) {

@@ -7,8 +7,9 @@
 //
 //                       C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
 
+//                         C:\Users\kxb16204\Desktop\bands.txt
 // may consider move some functions to a functions.cpp
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <iostream>
 #define bandsize 100
@@ -39,10 +40,10 @@ int main(int argc, const char * argv[]) {
     //extract information from the file and build those objects up ready to process
 	if (option == 'y')
 	{
-        string f[filelength],fname,fline;
+		string f[filelength], f2[filelength],fname, fline;
         ifstream iF;
 		// check filename input       // may try GUI later
-		cout << "Indicate your band database file:" << endl;
+		cout << "Indicate your bands database file:" << endl;
 		while (1)	
 		{
 			cin >> fname;
@@ -80,13 +81,65 @@ int main(int argc, const char * argv[]) {
         }
         
 
-		cout << endl << "File loaded successfully!" << endl;
+		cout << endl << "Bands database File loaded successfully!" << endl;
 
 		cout << "\n\nInput anything to continue......";
 		cin >> c;
 #ifdef WINDOWS
 		system("cls");
 #endif
+
+		cout << "Indicate your artists database file:" << endl;
+		while (1)
+		{
+			cin >> fname;
+			iF.open(fname.c_str());
+			if (!iF)
+			{
+				cout << "Error opening file! Pls re-input your file:" << endl;
+				continue;
+			}
+			break;
+		}
+
+		int count2 = 0, numberofArtists;  //begin to read file
+		while (!iF.eof())
+		{
+			getline(iF, fline);
+			f2[count2] = fline;    // f2 holds the content from the artists database
+			count2++;
+		}
+		numberofArtists = count2 / 4;    //4 lines for one artist
+
+		for (int i = 0, j = 0; i<numberofArtists; i++) { //f2[i] holds the content
+			bands[i].setBandName(f[j]);
+			bands[i].setBandYear(stoi(f[j + 1]), stoi(f[j + 2]));
+			bands[i].setGenres(f[j + 3]);
+			bands[i].setDesc(f[j + 4]);
+
+			list<string> songs;
+			for (int q = j + 5; q<j + 15; q++) {
+				songs.push_back(f[q]);
+			}
+			bands[i].setSongs(songs);
+			j += 15;
+			record[i] = 1;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		//show the user which bands have been stored
 		cout << "You have input information for bands:" << endl << endl;
@@ -154,7 +207,7 @@ int main(int argc, const char * argv[]) {
         cout<<"\n\n\n\tBand no = "<<n+1<<"\t"<< bands[n].getBandName() << "\n\n\t1. Edit information for this band\n\t2. Add new member for this band\n\t3. Search\n\t4. Destroy\n\t5. Display all the bands you have input\n\t6. Change to another band to modify\n\t7. Connect two bands\n\t8. Save to a new file\n\t9. Exit\n\n\t\n\n\t12.test see the information about all the members\nEnter your choice = ";
         cin>>opt2;
         cout<<endl;
-		string w, x, y;
+		string w, x, y,year;
 		int z;
 		member mb;
         switch(opt2)
@@ -170,21 +223,26 @@ int main(int argc, const char * argv[]) {
 				
 				cout << "Enter the gender:" << endl;
 				getline(cin, x);
-				
+
+				cout << "Enter the birthyear:" << endl;
+				cin >> z;
+
+				getchar();
 				cout << "Enter the instrument:" << endl;
 				getline(cin, y);
 				
-				cout << "Enter the age:" << endl;
-				cin>>z;
+				cout << "Enter the staying year in this band:" << endl;
+				getline(cin, year);
 				
 			//	bands[n].addmember(w,x,y,z);  // create the object and push into the list under band class
 
 				mb.setName(w);
 				mb.setGender(x);
-				mb.setInstrument(y,bands[n].getBandName());
+				mb.setInstrument(y, bands[n].getBandName(), year);
 				mb.setAge(z);
 
 				bands[n].addmember(mb);    // create the object and push into the list under band class
+				
 				MemberList.push_back(mb); // put this object into the global MemberList for future process
 				// It seemed cannot declare a new member inside the switch
                 break;
@@ -237,7 +295,7 @@ int main(int argc, const char * argv[]) {
 
 			case 12:
 				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
-					cout << endl << it->getName() << " " << it->getAge() << " years old";
+					cout << endl << it->getName() << " born in " << it->getAge();
 					it->showInstruments2();
 				}
                 

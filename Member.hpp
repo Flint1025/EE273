@@ -21,7 +21,9 @@ private:
 	string gender;
 	list<string> instruments;  //two lists corresponds to each other one to one
 	list<string> bands;
+	list<string> stayYears;
 	int age;
+
 
 
 public:
@@ -29,15 +31,18 @@ public:
 	member(string, string, string, int);
 	void setName(string);
 	void setGender(string);
-	void setInstrument(string,string);
+	void setInstrument(string,string,string);
 	void setAge(int);
 
 	string getInstrument(string);
+	string getstayYear(string bname);
 	void showInstruments2();
 
 	string getName();
 	string getGender();
 	list<string> getInstrument();
+
+
 	int getAge();
 
 
