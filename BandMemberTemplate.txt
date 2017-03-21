@@ -13,27 +13,36 @@ and so i think this should be used for the search function
 Anthony Kiedis
 1962
 Singer
+1983-2017
 Red Hot Chilli Peppers
 Michael Balzary (Flea)
 1962
 Guitarist
+1983-2017
 Red Hot Chilli Peppers
 Chad Smith
 1961
 Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer
+1987-2017, 1991-2003, 1995-2001, 1999-2001, 2001-2004, 1990-2012, 1982-1983, 1991-1992, 1993-1995
 Red Hot Chili Peppers, Chickenfoot, Chad Smith's Bombastic Meatbats, Glenn Hughes, HSAS, The Process, Residente, Tom Morello, Dick Van Dyke
 John Frusciante
 1970
-Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist			
+Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist
+1991-2017, 1990-1991, 1987-1989, 1994-1995, 1995-1999, 2001-2002, 2001-2009, 2004-2006, 2006-2009, 2014-2016		
 Red Hot Chili Peppers, Ataxia, Josh Klinghoffer, The Mars Volta, Omar Rodríguez-López, Wu-Tang Clan, Black Knights, Venetian Snares, Fugazi, Duran Duran
 Hillel Slovak
 1962
 Guitarist, Guitarist
+1983-1987, 1979-1982
 Red Hot Chili Peppers, What Is This?
 Jack Irons
 1962
 Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer
+1995-2017, 1990-1991, 1987-1989, 1994-1995, 1995-1999, 2001-2002, 2001-2009, 2004-2006, 2006-2009, 2014-2016, 2007-2009
 Red Hot Chili Peppers, Pearl Jam, What Is This?, Eleven, Mark Lanegan Band, Spinnerette, The Latino Rockabilly War, Redd Kross, Courtney Love, Raging Slab, The Wallflowers
+
+EVERYTHING PAST THIS POINT IS THE SAME
+
 John Lennon
 1940
 Guitar, Vocals, Guitar, Vocals, Vocals, Guitar, Guitar, Guitar
@@ -144,9 +153,8 @@ John Paul Jones
 1946
 Guitar, Piano, Guitar, Guitar, Guitar, Guitar
 Led Zeppelin, Them Crooked Vultures, Donovan, Seasick Steve, R.E.M, Dave Rawlings Machine
-
-
-
-
-
+Noel Gallagher
+1967
+Vocals, Guitar, Vocals, Vocals, Guitar, Guitar
+Oasis, Noel Gallagher's High Flying Birds, The Rain, Tailgunner, Smokin' Mojo Filters, Inspiral Carpets
 
