@@ -1,0 +1,152 @@
+The file is formatted as follows:
+NAME
+BIRTH DATE
+INSTRUMENT 1, INSTRUMENT 2, INSTRUMENT 3
+BAND 1, BAND 2, BAND 3
+
+If a person has been in more than one band then the INSTRUMENT is repeated depending on how many bands and his instrument for that band
+
+
+The following members are from Red Hot Chilli Peppers and The Beatles, a couple of them have been in multiple bands together
+and so i think this should be used for the search function
+
+Anthony Kiedis
+1962
+Singer
+Red Hot Chilli Peppers
+Michael Balzary (Flea)
+1962
+Guitarist
+Red Hot Chilli Peppers
+Chad Smith
+1961
+Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer
+Red Hot Chili Peppers, Chickenfoot, Chad Smith's Bombastic Meatbats, Glenn Hughes, HSAS, The Process, Residente, Tom Morello, Dick Van Dyke
+John Frusciante
+1970
+Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist, Guitarist			
+Red Hot Chili Peppers, Ataxia, Josh Klinghoffer, The Mars Volta, Omar Rodríguez-López, Wu-Tang Clan, Black Knights, Venetian Snares, Fugazi, Duran Duran
+Hillel Slovak
+1962
+Guitarist, Guitarist
+Red Hot Chili Peppers, What Is This?
+Jack Irons
+1962
+Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer, Drummer
+Red Hot Chili Peppers, Pearl Jam, What Is This?, Eleven, Mark Lanegan Band, Spinnerette, The Latino Rockabilly War, Redd Kross, Courtney Love, Raging Slab, The Wallflowers
+John Lennon
+1940
+Guitar, Vocals, Guitar, Vocals, Vocals, Guitar, Guitar, Guitar
+The Quarrymen, The Beatles, Plastic Ono Band, Harry Nilsson, The Dirty Mac, Yoko Ono, David Bowie, Elton John
+Paul McCartney
+1942
+Guitar, Guitar, Vocals, Guitar, Guitar
+The Quarrymen, The Beatles, Wings, The Fireman, Michael Jackson
+Ringo Starr
+1940
+Drummer, Drummer, Drummer, Vocals, Drummer, Drummer, Drummer
+The Beatles, Rory Storm and the Hurricanes, Plastic Ono Band, Ringo Starr & His All-Starr Band, The Band, Peter Frampton, Steve Lukather
+George Harrison
+1943
+Guitar, Guitar, Guitar, Guitar, Sitar, Guitar, Sitar
+The Quarrymen, The Beatles, Plastic Ono Band, Traveling Wilburys, Ravi Shankar, Eric Clapton, The Radha Krsna Temple
+Stuart Sutcliffe
+1940
+Guitar, Guitar
+The Beatles, The Bats
+Chris Martin
+1977
+Vocals
+Coldplay
+Jonny Buckland
+1977
+Guitar
+Coldplay
+Guy Berryman
+1978
+Guitar, Guitar, Keyboard, Guitar, Guitar
+Coldplay, Apparatjik, Rik Simpson, a-ha, The Pierces
+Will Champion
+1978
+Drums, Guitar
+Coldplay, a-ha
+John Lowe
+1942
+Piano
+The Quarrymen
+Eric Griffiths
+1940
+Guitar
+The Quarrymen
+Danny O'Donoghue
+1979
+Vocals
+The Script
+1976
+Guitar
+The Script
+Glen Power
+1978
+Drummer
+The Script
+Adam Levine
+1979
+Vocals, Guitar, Vocals, Guitar, Guitar, Drums
+Maroon 5, Rock City, Gym Class Heroes, Rozzi Crane, K'naan
+Mickey Madden
+1979
+Guitar, Guitar
+Maroon 5, Historics
+Ryan Dusick
+1977
+Drums, Guitar, Guitar
+Maroon 5, Kara's Flowers, Former Future
+James Valentine
+1978
+Guitar, Guitar, Guitar, Keyboard, Vocals, Guitar, Guitar, Keyboard, Guitar
+Maroon 5, JJAMZ, Square, Happy Dog, Montag, Kid Quarkstar, Mondello, John Mayer, PJ Morton
+Matt Flynn
+1978
+Drummer, Drummer, Drummer, Drummer, Drummer
+Maroon 5, The B-52's, Chicago, Gavin DeGraw, Gandhi
+PJ Morton
+1981
+Vocals, Keyboard, Keyboard, Vocals, Keyboard, Vocals, Keyboard, Vocals, Vocals, Keyboard, Vocals, Vocals
+Maroon 5, Lil Wayne, Stevie Wonder, Mannie Fresh, Trombone Shorty, Mack Maine, Juvenile, 5th Ward, Weebie Dee-1
+Freddie Mercury
+1946
+Vocals, Piano, Piano, Vocals, Vocals
+Queen, Larry Lurex, Ibex/Wreckage, Sour Milk Sea, Montserrat Caballé
+John Deacon
+1951
+Guitar, Guitar, Guitar, Guitar, Guitar
+Queen, Man Friday & Jive Junior, The Immortals, Montserrat Caballe, Hot Chocolate
+Brian May 
+1947
+Vocals, Guitar
+Smile, Queen
+Roger Taylor
+1948
+Drummer, Drummer, Drummer, Drummer, Drummer
+Queen, The Cross, Smile, Felix & Arty, Yoshiki
+Jimmy Page
+Guitar, Guitar, Guitar, Guitar
+The Yardbirds, Led Zeppelin, The Firm, Coverdale
+John Bonham
+1948
+Drummer, Drummer
+Band of Joy, Led Zeppelin
+Robert Plant
+1948
+Vocals, Vocals, Vocals, Vocals, Vocals, Vocals
+Band of Joy, Led Zeppelin, The Honeydrippers, Page and Plant, Strange Sensation, The Sensational Space Shifters
+John Paul Jones
+1946
+Guitar, Piano, Guitar, Guitar, Guitar, Guitar
+Led Zeppelin, Them Crooked Vultures, Donovan, Seasick Steve, R.E.M, Dave Rawlings Machine
+
+
+
+
+
+
