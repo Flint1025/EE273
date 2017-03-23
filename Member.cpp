@@ -16,19 +16,26 @@ using namespace std;
 member::member(){
 
 	name = "";
-	gender = 'x';
+//	gender = 'x';
 	age = 0;
 
 }
 
-member::member(string w, string x, string y, int z){
+member::member(string w, string y, int z){
 
 	// w = name, x = gender, y = instrument, z = age
 	name = w;
-	gender = x;
+//	gender = x;
 	instruments.push_back(y);
 	age = z;
 
+}
+member::member(string name, int birthYear, list<string> inst, list<string> year, list<string> band){
+    this-> name = name;
+    age = birthYear;
+    instruments = inst;
+    stayYears = year;
+    bands = band;
 }
 
 
@@ -38,9 +45,9 @@ void member::setName(string n){
 	name = n;
 }
 
-void member::setGender(string g){
-	gender = g;
-}
+//void member::setGender(string g){
+//	gender = g;
+//}
 
 void member::setInstrument(string i, string b, string y){
 	instruments.push_back(i);
@@ -59,6 +66,7 @@ string member::getInstrument(string bname)  // version when seeing the artilsts 
 	for (list<string>::iterator it1 = instruments.begin(), it2 = bands.begin(); it1 != instruments.end(); ++it1, ++it2) {
 		if (*it2 == bname) return *it1;
 	}
+    return 0;// add checking for 0
 }
 
 string member::getstayYear(string bname)  // version when seeing the artilsts inside a band
@@ -66,13 +74,14 @@ string member::getstayYear(string bname)  // version when seeing the artilsts in
 	for (list<string>::iterator it1 = stayYears.begin(), it2 = bands.begin(); it1 != stayYears.end(); ++it1, ++it2) {
 		if (*it2 == bname) return *it1;
 	}
+    return 0; // add checking for 0
 }
 
 
 void member::showInstruments2()  // version when seeing all the artilsts
 {
 	for (list<string>::iterator it1 = instruments.begin(), it2 = bands.begin(), it3 = stayYears.begin(); it1 != instruments.end(); ++it1, ++it2, ++it3) {
-		cout << " was " << *it1 << " in " << *it2 << " from " << *it3<< endl;
+		cout << *it1 << " in " << *it2 << " from " << *it3<< endl;
 	}
 }
 
@@ -85,9 +94,9 @@ string member::getName(){
 	return name;
 }
 
-string member::getGender(){
-	return gender;
-}
+//string member::getGender(){
+//	return gender;
+//}
 
 list<string> member::getInstrument(){
 	return instruments;

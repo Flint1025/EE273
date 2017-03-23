@@ -18,7 +18,7 @@ using namespace std;
 class member{
 private:
 	string name;
-	string gender;
+//	string gender;
 	list<string> instruments;  //two lists corresponds to each other one to one
 	list<string> bands;
 	list<string> stayYears;
@@ -28,9 +28,11 @@ private:
 
 public:
 	member();
-	member(string, string, string, int);
+	member(string, string, int);
+    member(string, int, list<string>, list<string>, list<string>);  //reading from database
+    
 	void setName(string);
-	void setGender(string);
+//	void setGender(string);
 	void setInstrument(string,string,string);
 	void setAge(int);
 
@@ -39,7 +41,7 @@ public:
 	void showInstruments2();
 
 	string getName();
-	string getGender();
+//	string getGender();
 	list<string> getInstrument();
 
 

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
 //                       C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
+//
+//                   mac:     /Users/Flint/Desktop/member.txt
 
 //                         C:\Users\kxb16204\Desktop\bands.txt
 // may consider move some functions to a functions.cpp
@@ -13,6 +15,7 @@
 
 #include <iostream>
 #define bandsize 100
+#define membersize 100
 #define filelength 2000
 #include "Band.hpp"
 #define WINDOWS
@@ -21,15 +24,45 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <iterator>
+
 using namespace std;
 
 
+//implementation of add member (from file)
+
+// 1. create all objects put into a global list
+// 2. put them into corresponding band class
+
+band bands[bandsize]; //change to dynamically creation later
+member members[membersize];
+
 list <member> MemberList;
+
+
+
+template<typename Out>   // list<string> x = split(string, 'delimeter');
+
+void split(const std::string &s, char delim, Out result) {
+    std::stringstream ss;
+    ss.str(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        *(result++) = item;
+    }
+}
+
+list<std::string> split(const std::string &s, char delim) {
+    list<std::string> elems;
+    split(s, delim, std::back_inserter(elems));
+    return elems;
+}
+
 
 int main(int argc, const char * argv[]) {
 
 
-    band bands[bandsize]; //change to dynamically creation later
+
     int opt1,opt2,n,n1,n2,record[bandsize]={0};
 	char option;
     char c;
@@ -40,8 +73,8 @@ int main(int argc, const char * argv[]) {
     //extract information from the file and build those objects up ready to process
 	if (option == 'y')
 	{
-		string f[filelength], f2[filelength],fname, fline;
-        ifstream iF;
+		string f[filelength], f2[filelength],fname, fname2, fline, fline2;  //fname2, fline2 are used for member file
+        ifstream iF,iF2;
 		// check filename input       // may try GUI later
 		cout << "Indicate your bands database file:" << endl;
 		while (1)	
@@ -65,7 +98,7 @@ int main(int argc, const char * argv[]) {
 		}
         numberofBands = count/15;    //15 lines for one band
         
-        for (int i=0, j=0; i<numberofBands; i++) {
+        for (int i=0, j=0; i<numberofBands; i++) {    // i controls which band
             bands[i].setBandName(f[j]);
             bands[i].setBandYear(stoi(f[j+1]), stoi(f[j+2]));
             bands[i].setGenres(f[j+3]);
@@ -76,7 +109,7 @@ int main(int argc, const char * argv[]) {
                 songs.push_back(f[q]);
             }
             bands[i].setSongs(songs);
-            j+=15;
+            j+=15;  // every time finish one band, go to next band, j+=15
             record[i] = 1;
         }
         
@@ -92,55 +125,52 @@ int main(int argc, const char * argv[]) {
 		cout << "Indicate your artists database file:" << endl;
 		while (1)
 		{
-			cin >> fname;
-			iF.open(fname.c_str());
-			if (!iF)
+			cin >> fname2;
+			iF2.open(fname2.c_str());
+			if (!iF2)
 			{
 				cout << "Error opening file! Pls re-input your file:" << endl;
 				continue;
 			}
 			break;
 		}
-
+//
 		int count2 = 0, numberofArtists;  //begin to read file
-		while (!iF.eof())
+		while (!iF2.eof())
 		{
-			getline(iF, fline);
-			f2[count2] = fline;    // f2 holds the content from the artists database
+			getline(iF2, fline2);
+			f2[count2] = fline2;    // f2 holds the content from the artists database
 			count2++;
 		}
-		numberofArtists = count2 / 4;    //4 lines for one artist
+		numberofArtists = count2 / 5;    //5 lines for one artist
 
 		for (int i = 0, j = 0; i<numberofArtists; i++) { //f2[i] holds the content
-			bands[i].setBandName(f[j]);
-			bands[i].setBandYear(stoi(f[j + 1]), stoi(f[j + 2]));
-			bands[i].setGenres(f[j + 3]);
-			bands[i].setDesc(f[j + 4]);
+            string name, gender, stayYear, instrument;
+            int birYear, number;    // number = how many instruments this person has
+            name = f2[j];
+            birYear = stoi(f2[j+1]);
+            list<string> inst = split(f2[j+2], ', ');
+            list<string> Year = split(f2[j+3], ', ');
+            list<string> bands = split(f2[j+4], ', ');
+ //           number = inst.size();
+            member mb(name, birYear, inst, Year, bands);
+            
+            // link to band class  ********#### need to be implemented ###*********
+            //bands[n].addmember.......
+            
+            MemberList.push_back(mb);
+            j+=5;
 
-			list<string> songs;
-			for (int q = j + 5; q<j + 15; q++) {
-				songs.push_back(f[q]);
-			}
-			bands[i].setSongs(songs);
-			j += 15;
-			record[i] = 1;
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        cout << endl << "Artists database File loaded successfully!" << endl;
+        
+        cout << "\n\nInput anything to continue......";
+        cin >> c;
+#ifdef WINDOWS
+        system("cls");
+#endif
+        
 		//show the user which bands have been stored
 		cout << "You have input information for bands:" << endl << endl;
 		for (int i = 0; i < bandsize; i++)
@@ -221,9 +251,6 @@ int main(int argc, const char * argv[]) {
 				cout << "Enter the name:" << endl;
 				getline(cin, w);
 				
-				cout << "Enter the gender:" << endl;
-				getline(cin, x);
-
 				cout << "Enter the birthyear:" << endl;
 				cin >> z;
 
@@ -237,7 +264,6 @@ int main(int argc, const char * argv[]) {
 			//	bands[n].addmember(w,x,y,z);  // create the object and push into the list under band class
 
 				mb.setName(w);
-				mb.setGender(x);
 				mb.setInstrument(y, bands[n].getBandName(), year);
 				mb.setAge(z);
 
@@ -295,7 +321,7 @@ int main(int argc, const char * argv[]) {
 
 			case 12:
 				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
-					cout << endl << it->getName() << " born in " << it->getAge();
+					cout << endl << it->getName() << " born in " << it->getAge() << "." << " Experience: " <<endl;
 					it->showInstruments2();
 				}
                 

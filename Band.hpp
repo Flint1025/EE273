@@ -57,7 +57,7 @@ public:
 
 	void addmember(member mb);
 
-	void addmember(string w, string x, string y, int z);
+	void addmember(string w, string y, int z);
 
 
 	void showBand2();

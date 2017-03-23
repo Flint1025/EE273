@@ -69,9 +69,9 @@ void band::addmember(member mb)
 	memberlist.push_back(mb);
 }
 
-void band::addmember(string w, string x, string y, int z)
+void band::addmember(string w, string y, int z)
 {
-	member mb(w,x,y,z);
+	member mb(w,y,z);
 	memberlist.push_back(mb);
 }
 
