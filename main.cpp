@@ -34,6 +34,7 @@ using namespace std;
 // 1. create all objects put into a global list
 // 2. put them into corresponding band class
 
+int record[bandsize]={0};
 band bands[bandsize]; //change to dynamically creation later
 member members[membersize];
 
@@ -48,6 +49,18 @@ int getbandnumber(string band){   // to return the position of band in the bands
     return -1;  // return -1 if this band hasn't been store yet
 }
 
+void displaybandnums(){
+    cout << "You have input information for bands:" << endl << endl;
+    for (int i = 0; i < bandsize; i++)
+    {
+        if (record[i] == 1)   // record[i] is 1 if the band has been added
+        {
+            cout << i+1 << " " << bands[i].getBandName();   // implement another version withour repeated prompt
+            cout << endl;
+        }
+    }
+}
+// ***--
 template<typename Out>   // list<string> x = split(string, 'delimeter');
 
 void split(const std::string &s, char delim, Out result) {
@@ -64,13 +77,14 @@ list<std::string> split(const std::string &s, char delim) {
     split(s, delim, std::back_inserter(elems));
     return elems;
 }
+//  --***
 
 
 int main(int argc, const char * argv[]) {
 
 
 
-    int opt1,opt2,n,n1,n2,record[bandsize]={0};
+    int opt1,opt2,n,n1,n2;
 	char option;
     char c;
 	//ask user if he wants to extract information from a file
@@ -188,15 +202,8 @@ int main(int argc, const char * argv[]) {
 #endif
         
 		//show the user which bands have been stored
-		cout << "You have input information for bands:" << endl << endl;
-		for (int i = 0; i < bandsize; i++)
-		{
-			if (record[i] == 1)   // record[i] is 1 if the band has been added
-			{
-				cout << i+1 << " " << bands[i].getBandName();   // implement another version withour repeated prompt
-				cout << endl;
-			}
-		}
+        displaybandnums();
+
 	}
 	else
 	{
@@ -320,8 +327,10 @@ int main(int argc, const char * argv[]) {
 				}
                 break;
                 
-            case 6:
-                cout<<"Enter band number: ";
+            case 6:  // display the bands which have been stored
+                displaybandnums();
+                
+                cout<< endl << "Enter band number: ";
                 cin>>n;
 				n--;
                 break;
