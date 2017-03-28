@@ -39,7 +39,14 @@ member members[membersize];
 
 list <member> MemberList;
 
-
+int getbandnumber(string band){   // to return the position of band in the bands[] array
+    for (int i = 0; i < bandsize; i++) {
+        if (bands[i].getBandName() == band) {
+            return i;
+        }
+    }
+    return -1;  // return -1 if this band hasn't been store yet
+}
 
 template<typename Out>   // list<string> x = split(string, 'delimeter');
 
@@ -149,14 +156,23 @@ int main(int argc, const char * argv[]) {
             int birYear, number;    // number = how many instruments this person has
             name = f2[j];
             birYear = stoi(f2[j+1]);
-            list<string> inst = split(f2[j+2], ', ');
-            list<string> Year = split(f2[j+3], ', ');
-            list<string> bands = split(f2[j+4], ', ');
+            list<string> inst = split(f2[j+2], ',');
+            list<string> Year = split(f2[j+3], ',');
+            list<string> bandslist = split(f2[j+4], ',');
  //           number = inst.size();
-            member mb(name, birYear, inst, Year, bands);
+            member mb(name, birYear, inst, Year, bandslist);
             
             // link to band class  ********#### need to be implemented ###*********
             //bands[n].addmember.......
+            
+            for (list<string>::iterator it = bandslist.begin(); it != bandslist.end(); ++it) {
+                int p = getbandnumber(*it); // p is the position of band in global bands[] array
+                if (p != -1 ) {
+                    bands[p].addmember(mb);
+                }
+                
+
+            }
             
             MemberList.push_back(mb);
             j+=5;
