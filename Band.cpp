@@ -5,7 +5,7 @@
 //  Created by FAN XIAOFENG on 4/3/17.
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
-//#include "stdafx.h"
+#include "stdafx.h"
 
 #include "Band.hpp"
 #define WINDOWS
@@ -48,7 +48,7 @@ string band::getBandName(){
 
 void band::showBand(){
     char c;
-    cout << "Band: " << BandName << "was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
+    cout << "Band: " << BandName << " was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
 	cout << "Genres: " << genres << endl << endl; 
 	cout << "Members: " << endl;
 	for (list<member>::iterator it = memberlist.begin(); it != memberlist.end(); ++it) {
@@ -77,6 +77,7 @@ void band::addmember(string w, string y, int z)
 
 void band::showBand2(){
 	char c;
+	cout << "-------------------******************-------------------" << endl;
 	cout << "Band: " << BandName << " was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
 	cout << "Genres: " << genres << endl;
 	cout << "Members: " << endl;
@@ -87,8 +88,7 @@ void band::showBand2(){
 	for (list<string>::iterator it = songslist.begin(); it != songslist.end(); ++it) {
         cout << endl << *it;
 	}
-
-	cout << endl;
+	cout << endl << endl << endl;
 }
 
 void band::editBand(){
@@ -100,7 +100,7 @@ void band::editBand(){
 #ifdef WINDOWS
         system("cls");
 #endif // WINDOWS
-        cout<<"\n\n\n\tBand: "<< BandName <<"\n\n\t1. Change the name of this band\n\t2. Change the year of this band\n\t3. Change genres of this band\n\t4. Add new song to this band\n\t5. Display information for this band\n\t6. Back to main menu\n\n\tEnter your choice = ";
+        cout<<"\n\n\n\tBand: "<< BandName <<"\n\n\t1. Change the name of this band\n\t2. Change the year of this band\n\t3. Change genres of this band\n\t4. Add new song to this band\n\t5. Display information for this band\n\t6. Back to edition menu\n\n\tEnter your choice = ";
         cin>>opt;
         cout<<endl;
 	

@@ -8,10 +8,23 @@
 //                       C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
 //
 //                   mac:     /Users/Flint/Desktop/member.txt
+//                     sp:   C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
 
-//                         C:\Users\kxb16204\Desktop\bands.txt
+//                         D:\Users\kxb16204\Desktop\EE273-master\bands.txt
+//                         D:\Users\kxb16204\Desktop\EE273-master\member.txt
 // may consider move some functions to a functions.cpp
-//#include "stdafx.h"
+
+/*bugs
+
+file encoding bug
+input checking
+
+
+*/
+
+
+
+#include "stdafx.h"
 
 #include <iostream>
 #define bandsize 100
@@ -26,20 +39,39 @@
 #include <list>
 #include <iterator>
 
+
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#include "main.h"
 using namespace std;
 
 
-//implementation of add member (from file)
-
-// 1. create all objects put into a global list
-// 2. put them into corresponding band class
-
+// *************************----------------------------------
 int record[bandsize]={0};
 band bands[bandsize]; //change to dynamically creation later
 member members[membersize];
 
 list <member> MemberList;
+//  ------------------------------------****************************
 
+
+
+// this function will firstly check if this artist has been added into the global memberlist list
+// if yes, add this new exprience to this artist then return 1
+// if no, return 0
+int add_member_global(string name, string band, string instrument, string stayYear) { // return 1 if this artist has been stored
+	for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {    // if has been stored, just add a new instrument for this artist
+		if (name == it->getName()) {
+			it->setInstrument(instrument, band, stayYear);
+			return 1;
+		}
+	}
+	return 0;  // return 0 if this artist has not been stored
+}
+
+//  ------------------------------------****************************
 int getbandnumber(string band){   // to return the position of band in the bands[] array
     for (int i = 0; i < bandsize; i++) {
         if (bands[i].getBandName() == band) {
@@ -48,6 +80,8 @@ int getbandnumber(string band){   // to return the position of band in the bands
     }
     return -1;  // return -1 if this band hasn't been store yet
 }
+
+
 
 void displaybandnums(){
     cout << "You have input information for bands:" << endl << endl;
@@ -60,7 +94,164 @@ void displaybandnums(){
         }
     }
 }
-// ***--
+
+
+int search_member(string name) { // display and return 1 if this artist has been stored
+	for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {    
+		if (name == it->getName()) {
+			cout << endl << name << " was born in " << it->getAge() <<"\nExperience: \n";
+			it->showInstruments2();
+			return 1;
+		}
+	}
+	return 0;  // return 0 if this artist has not been stored
+}
+
+
+int search() {
+	int opt, temp;
+	string bandname, artistname;
+	while (1)
+	{
+		system("cls");
+		cout << "\n\n\t1. Search information for a band stored\n\t2. Search for an instrument stored\n\t3. Search for an artist stored\n\t9. Back to the main menu\n\n\tEnter your choice = ";
+		cin >> opt;
+		switch (opt)
+		{
+		default:
+			break;
+		case 1:
+			getchar();
+			cout << "Input the band name:" << endl;
+			getline(cin, bandname);
+			temp = getbandnumber(bandname);
+			if (temp == -1)
+			{
+				cout << bandname << " has not been stored yet." << endl;
+				cout << "________Input any single character to continue________" << endl;
+				getchar();
+				continue;
+			}
+			else {
+				bands[temp].showBand();
+				continue;
+			}
+			break;
+		case 3:
+			getchar();
+			cout << "Input the artist name:" << endl;
+			getline(cin, artistname);
+			temp = search_member(artistname); // if this artist has been stored, this function will diaplay it and then return 1
+			if (temp == 0)   // if this artist has not been stored, then nothing be displayed and function will return 0
+			{
+				cout << artistname << " has not been stored yet";
+				cout << endl << "________Input any single character to continue________" << endl;
+				getchar();
+				continue;
+			}
+			else // this artist has been stored and now already be displayed. temp shall be 1 here
+			{
+				cout << endl << "________Input any single character to continue________" << endl;
+				getchar();
+				continue;
+			}
+			break;
+		case 9:
+			return 0;
+		}
+		return 0;
+	}
+}
+
+
+
+
+
+
+
+int modifysingleband(int n, int opt2){
+#ifdef WINDOWS
+    system("cls");
+#endif // WINDOWS
+    displaybandnums();
+    cout<<"\nEnter the band number for which band you want to view or modify details: ";
+    cin>>n;
+    n = n-1;
+    while (1) {
+#ifdef WINDOWS
+        system("cls");
+#endif // WINDOWS
+        cout<<"\n\n\n\tBand no = "<<n+1<<"\t"<< bands[n].getBandName() << "\n\n\t1. Edit information for this band\n\t2. Add new member for this band\n\t3. Display information about this band\n\t4. Change to another band to modify\n\t9. Back to the main menu\n\n\t\n\nEnter your choice = ";
+        cin>>opt2;
+        cout<<endl;
+
+		string name, instrument, stayYear;
+        int birthyear;
+        member mb;
+        switch(opt2)
+        {
+            default:
+                cout<<"Invalid input";
+                break;
+                
+            case 2:   // implement addnew() as add a new member object into the vector
+                getchar();
+                cout << "Enter the name:" << endl;
+                getline(cin, name);
+                
+                cout << "Enter the birthyear:" << endl;
+                cin >> birthyear;
+                
+                getchar();
+                cout << "Enter the instrument:" << endl;
+                getline(cin, instrument);
+                
+                cout << "Enter the staying year in this band:" << endl;
+                getline(cin, stayYear);
+                
+                //	bands[n].addmember(w,x,y,z);  // create the object and push into the list under band class
+                
+                mb.setName(name);
+                mb.setInstrument(instrument, bands[n].getBandName(), stayYear);
+                mb.setAge(birthyear);
+                
+                bands[n].addmember(mb);    // create the object and push into the list under band class
+                
+				if (add_member_global(name, bands[n].getBandName(), instrument, stayYear) == 0)// this will return 1 if this member has been created and added into the global list
+				{                                                                      // return 0 if this member has been created and the new "experience" has been stored
+					MemberList.push_back(mb); // put this object into the global MemberList for future process
+				}
+                // It seemed cannot declare a new member inside the switch
+                break;
+                //
+            case 1:
+                bands[n].editBand();
+                record[n] = 1;
+                break;
+                //
+
+			case 3:
+				bands[n].showBand();
+				break;
+
+            case 4:  // display the bands which have been stored
+                displaybandnums();
+                
+                cout<< endl << "Enter band number: ";
+                cin>>n;
+                n--;
+                break;
+
+            case 9:
+                return 0;
+        }
+        cout<<"\n\nInput anything to continue.....";
+        char c;
+        cin>>c;   // bug to be fixed
+    }
+}
+
+// *************************----------------------------------
 template<typename Out>   // list<string> x = split(string, 'delimeter');
 
 void split(const std::string &s, char delim, Out result) {
@@ -77,14 +268,12 @@ list<std::string> split(const std::string &s, char delim) {
     split(s, delim, std::back_inserter(elems));
     return elems;
 }
-//  --***
+//  ------------------------------------****************************
 
 
 int main(int argc, const char * argv[]) {
 
-
-
-    int opt1,opt2,n,n1,n2;
+    int opt1,opt2=0,n=0,n1,index=0;
 	char option;
     char c;
 	//ask user if he wants to extract information from a file
@@ -96,20 +285,67 @@ int main(int argc, const char * argv[]) {
 	{
 		string f[filelength], f2[filelength],fname, fname2, fline, fline2;  //fname2, fline2 are used for member file
         ifstream iF,iF2;
-		// check filename input       // may try GUI later
-		cout << "Indicate your bands database file:" << endl;
-		while (1)	
+
+
+		// ****** dialog box ****** //
+		char filename[MAX_PATH];
+
+		OPENFILENAME ofn;
+		ZeroMemory(&filename, sizeof(filename));
+		ZeroMemory(&ofn, sizeof(ofn));
+		ofn.lStructSize = sizeof(ofn);
+		ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+		ofn.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
+		ofn.lpstrFile = filename;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.lpstrTitle = "Choose your bands database file";
+		ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+
+		if (GetOpenFileNameA(&ofn))
 		{
-			cin >> fname;
-			iF.open(fname.c_str());
-			if (!iF)
-			{
-				cout << "Error opening file! Pls re-input your file:" << endl;
-				continue;
-			}
-			break;
+			std::cout << "You hava sucessfully loaded the file \"" << filename << "\"\n";
 		}
-        
+		else
+		{
+			// All this stuff below is to tell you exactly how you messed up above. 
+			// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
+			switch (CommDlgExtendedError())
+			{
+			case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
+			case CDERR_FINDRESFAILURE: std::cout << "CDERR_FINDRESFAILURE\n";  break;
+			case CDERR_INITIALIZATION: std::cout << "CDERR_INITIALIZATION\n";  break;
+			case CDERR_LOADRESFAILURE: std::cout << "CDERR_LOADRESFAILURE\n";  break;
+			case CDERR_LOADSTRFAILURE: std::cout << "CDERR_LOADSTRFAILURE\n";  break;
+			case CDERR_LOCKRESFAILURE: std::cout << "CDERR_LOCKRESFAILURE\n";  break;
+			case CDERR_MEMALLOCFAILURE: std::cout << "CDERR_MEMALLOCFAILURE\n"; break;
+			case CDERR_MEMLOCKFAILURE: std::cout << "CDERR_MEMLOCKFAILURE\n";  break;
+			case CDERR_NOHINSTANCE: std::cout << "CDERR_NOHINSTANCE\n";     break;
+			case CDERR_NOHOOK: std::cout << "CDERR_NOHOOK\n";          break;
+			case CDERR_NOTEMPLATE: std::cout << "CDERR_NOTEMPLATE\n";      break;
+			case CDERR_STRUCTSIZE: std::cout << "CDERR_STRUCTSIZE\n";      break;
+			case FNERR_BUFFERTOOSMALL: std::cout << "FNERR_BUFFERTOOSMALL\n";  break;
+			case FNERR_INVALIDFILENAME: std::cout << "FNERR_INVALIDFILENAME\n"; break;
+			case FNERR_SUBCLASSFAILURE: std::cout << "FNERR_SUBCLASSFAILURE\n"; break;
+			default: std::cout << "You cancelled.\n";
+			}
+		}
+
+		// ****** dialog box ****** //
+
+		      // may try GUI later
+		//cout << "Indicate your bands database file:" << endl;
+		//while (1)	
+		//{
+		//	cin >> fname;
+		//	iF.open(fname.c_str());
+		//	if (!iF)
+		//	{
+		//		cout << "Error opening file! Pls re-input your file:" << endl;
+		//		continue;
+		//	}
+		//	break;
+		//}
+		iF.open(filename);
 		int count = 0, numberofBands;  //begin to read file
 		while (!iF.eof())
 		{
@@ -132,10 +368,11 @@ int main(int argc, const char * argv[]) {
             bands[i].setSongs(songs);
             j+=15;  // every time finish one band, go to next band, j+=15
             record[i] = 1;
+			index = i;  // index of last non-empty position of bands[i]
         }
         
 
-		cout << endl << "Bands database File loaded successfully!" << endl;
+	//	cout << endl << "Bands database File loaded successfully!" << endl;
 
 		cout << "\n\nInput anything to continue......";
 		cin >> c;
@@ -143,18 +380,60 @@ int main(int argc, const char * argv[]) {
 		system("cls");
 #endif
 
-		cout << "Indicate your artists database file:" << endl;
-		while (1)
+		cout << "Choose your artists database file:" << endl;
+		char filename2[MAX_PATH];
+
+		OPENFILENAME ofn2;
+		ZeroMemory(&filename2, sizeof(filename2));
+		ZeroMemory(&ofn2, sizeof(ofn2));
+		ofn2.lStructSize = sizeof(ofn2);
+		ofn2.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+		ofn2.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
+		ofn2.lpstrFile = filename2;
+		ofn2.nMaxFile = MAX_PATH;
+		ofn2.lpstrTitle = "Choose your artists database file";
+		ofn2.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+
+		if (GetOpenFileNameA(&ofn2))
 		{
-			cin >> fname2;
-			iF2.open(fname2.c_str());
-			if (!iF2)
-			{
-				cout << "Error opening file! Pls re-input your file:" << endl;
-				continue;
-			}
-			break;
+			std::cout << "You have sucessfully loaded the file \"" << filename2 << "\"\n";
 		}
+		else
+		{
+			// All this stuff below is to tell you exactly how you messed up above. 
+			// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
+			switch (CommDlgExtendedError())
+			{
+			case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
+			case CDERR_FINDRESFAILURE: std::cout << "CDERR_FINDRESFAILURE\n";  break;
+			case CDERR_INITIALIZATION: std::cout << "CDERR_INITIALIZATION\n";  break;
+			case CDERR_LOADRESFAILURE: std::cout << "CDERR_LOADRESFAILURE\n";  break;
+			case CDERR_LOADSTRFAILURE: std::cout << "CDERR_LOADSTRFAILURE\n";  break;
+			case CDERR_LOCKRESFAILURE: std::cout << "CDERR_LOCKRESFAILURE\n";  break;
+			case CDERR_MEMALLOCFAILURE: std::cout << "CDERR_MEMALLOCFAILURE\n"; break;
+			case CDERR_MEMLOCKFAILURE: std::cout << "CDERR_MEMLOCKFAILURE\n";  break;
+			case CDERR_NOHINSTANCE: std::cout << "CDERR_NOHINSTANCE\n";     break;
+			case CDERR_NOHOOK: std::cout << "CDERR_NOHOOK\n";          break;
+			case CDERR_NOTEMPLATE: std::cout << "CDERR_NOTEMPLATE\n";      break;
+			case CDERR_STRUCTSIZE: std::cout << "CDERR_STRUCTSIZE\n";      break;
+			case FNERR_BUFFERTOOSMALL: std::cout << "FNERR_BUFFERTOOSMALL\n";  break;
+			case FNERR_INVALIDFILENAME: std::cout << "FNERR_INVALIDFILENAME\n"; break;
+			case FNERR_SUBCLASSFAILURE: std::cout << "FNERR_SUBCLASSFAILURE\n"; break;
+			default: std::cout << "You cancelled.\n";
+			}
+		}
+		iF2.open(filename2);
+		//while (1)
+		//{
+		//	cin >> fname2;
+		//	iF2.open(fname2.c_str());
+		//	if (!iF2)
+		//	{
+		//		cout << "Error opening file! Pls re-input your file:" << endl;
+		//		continue;
+		//	}
+		//	break;
+		//}
 //
 		int count2 = 0, numberofArtists;  //begin to read file
 		while (!iF2.eof())
@@ -177,14 +456,21 @@ int main(int argc, const char * argv[]) {
             member mb(name, birYear, inst, Year, bandslist);
             
             // link to band class  ********#### need to be implemented ###*********
-            //bands[n].addmember.......
+            //bands[n].addmember....... [done]
             
             for (list<string>::iterator it = bandslist.begin(); it != bandslist.end(); ++it) {
                 int p = getbandnumber(*it); // p is the position of band in global bands[] array
-                if (p != -1 ) {
+                if (p != -1 ) {   // p == -1 means this band has not been stored yet
                     bands[p].addmember(mb);
                 }
-                
+				else // if this band has not been created and stored yet, then create it based on the bandslist of this member
+				{
+					bands[index + 1].setBandName(*it);
+					//other information for this band is missing at this moment
+					bands[index + 1].addmember(mb);
+					record[index + 1] = 1;
+					index++;
+				}
 
             }
             
@@ -193,7 +479,7 @@ int main(int argc, const char * argv[]) {
 
 		}
 
-        cout << endl << "Artists database File loaded successfully!" << endl;
+ //       cout << endl << "Artists database File loaded successfully!" << endl;
         
         cout << "\n\nInput anything to continue......";
         cin >> c;
@@ -203,7 +489,6 @@ int main(int argc, const char * argv[]) {
         
 		//show the user which bands have been stored
         displaybandnums();
-
 	}
 	else
 	{
@@ -223,151 +508,60 @@ int main(int argc, const char * argv[]) {
 //	cin >> c;
 //	// the main menu
 //
-//	while (1)	
-//	{
-//#ifdef WINDOWS
-//		system("cls");
-//#endif // WINDOWS
-//		//maybe add reload file
-//		cout << "\n\n\t1. View all the bands stored\n\t2. View and modify a single band\n\t3. Search\n\t4. Save into a new file\n\t5. Exit\n\n\tEnter your choice = ";
-//		cin >> opt1;
-//		switch (opt1)
-//		{
-//		default:
-//			cout << "Invalid input";
-//			break;
-//		case 1:
-//			break;
-//		case 2:
-//			break;
-//		case 3:
-//			break;
-//		case 4:
-//			break;
-//		}
-//	}
-//
-
-
-	// process the database
-    cout<<"\nEnter the band number for which band you want to view or modify details: ";
-    cin>>n;
-    n = n-1;
-    while (1) {
+	while (1)
+	{
 #ifdef WINDOWS
-        system("cls");
+		system("cls");
 #endif // WINDOWS
-        cout<<"\n\n\n\tBand no = "<<n+1<<"\t"<< bands[n].getBandName() << "\n\n\t1. Edit information for this band\n\t2. Add new member for this band\n\t3. Search\n\t4. Destroy\n\t5. Display all the bands you have input\n\t6. Change to another band to modify\n\t7. Connect two bands\n\t8. Save to a new file\n\t9. Exit\n\n\t\n\n\t12.test see the information about all the members\nEnter your choice = ";
-        cin>>opt2;
-        cout<<endl;
-		string w, x, y,year;
-		int z;
-		member mb;
-        switch(opt2)
-        {
-            default:
-                cout<<"Invalid input";
-                break;
-                
-            case 2:   // implement addnew() as add a new member object into the vector
-				getchar();
-				cout << "Enter the name:" << endl;
-				getline(cin, w);
-				
-				cout << "Enter the birthyear:" << endl;
-				cin >> z;
-
-				getchar();
-				cout << "Enter the instrument:" << endl;
-				getline(cin, y);
-				
-				cout << "Enter the staying year in this band:" << endl;
-				getline(cin, year);
-				
-			//	bands[n].addmember(w,x,y,z);  // create the object and push into the list under band class
-
-				mb.setName(w);
-				mb.setInstrument(y, bands[n].getBandName(), year);
-				mb.setAge(z);
-
-				bands[n].addmember(mb);    // create the object and push into the list under band class
-				
-				MemberList.push_back(mb); // put this object into the global MemberList for future process
-				// It seemed cannot declare a new member inside the switch
-                break;
-//                
-            case 1:
-                bands[n].editBand();
-				record[n] = 1;
-                break;
-//
-//            case 3:
-//                cout<<"Enter name of person to search: ";
-//                cin>>name;
-//                T[n].show(T[n].search(name));
-//                break;
-//                
-//            case 4:
-//                T[n].destroy(T[n].start);
-//                cout<<"Tree "<<n<<" has been destroyed sucessfully";
-//                break;
-//                
-            case 5: // show all the band
+//		//maybe add reload file
+		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save into a new file\n\t6. Exit\n\n\tEnter your choice = ";
+		cin >> opt1;
+		switch (opt1)
+		{
+		default:
+			cout << "Invalid input";
+			break;
+		case 1:
 #ifdef WINDOWS
-				system("cls");
+                system("cls");
 #endif
-				for (int i = 0; i < bandsize; i++)
-				{
+                for (int i = 0; i < bandsize; i++)
+                {
 					if (record[i] == 1)   // record[i] is 1 if the band has been added
 					{
 						bands[i].showBand2();   // implement another version withour repeated prompt
 						cout << endl;
 					}
-					
-				}
-                break;
-                
-            case 6:  // display the bands which have been stored
-                displaybandnums();
-                
-                cout<< endl << "Enter band number: ";
-                cin>>n;
-				n--;
-                break;
-                
-            case 7:
-                cout<<"Merge __ to __ \n";
-                cin>>n2>>n1;
-  //              connect(&bands[n1],&bands[n2]);
-                break;
-                
-            case 9:
-                return 0;
+                }
+				char c;
+				cout << "\n\nInput anything to continue.....";
+				cin >> c;
+			break;
+		case 2:
+			system("cls");
+			for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
+				cout << endl << it->getName() << " born in " << it->getAge() << "." << " Experience: " << endl;
+				it->showInstruments2();
+			}
 
-			case 12:
-				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
-					cout << endl << it->getName() << " born in " << it->getAge() << "." << " Experience: " <<endl;
-					it->showInstruments2();
-				}
-                
-        }
-        cout<<"\n\nInput anything to continue.....";
-        cin>>c;   // bug to be fixed
-    }
+			cout << "\n\nInput anything to continue.....";
+			cin >> c;
+			break;
+		case 3:
+			modifysingleband(n, opt2);
+				cout << "\n\nInput anything to continue.....";
+				cin >> c;
+			break;
+		case 4:
+
+			search();
+			break;
+//		case 4:
+//			break;
+		}
+	}
+
     return 0;
 }
 
 
-//2 bugs:
-//1. only got the first band 2(fixed). display in main menu
-
-
-// input checking
-
-// implementa new version of display
-
-
-
-
-
-//  grohl

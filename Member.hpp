@@ -40,6 +40,7 @@ public:
 	string getstayYear(string bname);
 	void showInstruments2();
 
+
 	string getName();
 //	string getGender();
 	list<string> getInstrument();
