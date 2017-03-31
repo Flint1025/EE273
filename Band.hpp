@@ -37,6 +37,7 @@ public:
     band();
     band(string fn); // constructor using data from a flie named fn
 
+	int status;
 
 	//setter functions
     void setBandName(string name);
@@ -44,12 +45,17 @@ public:
     void setGenres(string geners);
 //    void setProducers(string producers);
     void setSongs(list<string> songs);
+	list<string> getSongs();
     void setDesc(string desc);
 
 
+	int getBandYear1();
+	int getBandYear2();
 	//getter functions
 	string getBandName();
 	string getGenres();
+
+	string getDesc();
 	
 
     void editBand();

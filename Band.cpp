@@ -34,17 +34,34 @@ void band::setSongs(list<string> songs){
     songslist = songs;
 }
 
+list<string> band::getSongs() {
+	return songslist;
+}
+
+
 void band::setDesc(string desc){
     this->desc = desc;
 }
 
+string band::getGenres() {
+	return genres;
+}
+
+string band::getDesc() {
+	return desc;
+}
+
+int band::getBandYear1() {
+	return BandYear[0];
+}
+int band::getBandYear2() {
+	return BandYear[1];
+}
 string band::getBandName(){
 	return BandName;
 }
 
-//string band::getMemberyear(){
-//	return mem;
-//}
+
 
 void band::showBand(){
     char c;

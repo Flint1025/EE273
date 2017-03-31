@@ -38,6 +38,7 @@ public:
 
 	string getInstrument(string);
 	string getstayYear(string bname);
+
 	void showInstruments2();
 
 
@@ -45,6 +46,10 @@ public:
 //	string getGender();
 	list<string> getInstrument();
 
+	list<string> getbands();
+
+
+	list<string> getstayYears();
 
 	int getAge();
 

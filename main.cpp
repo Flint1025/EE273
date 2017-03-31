@@ -39,6 +39,7 @@ input checking
 #include <list>
 #include <iterator>
 
+#include<tchar.h>
 
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -57,7 +58,8 @@ list <member> MemberList;
 //  ------------------------------------****************************
 
 
-
+void savebands();
+void saveartists();
 // this function will firstly check if this artist has been added into the global memberlist list
 // if yes, add this new exprience to this artist then return 1
 // if no, return 0
@@ -273,7 +275,7 @@ list<std::string> split(const std::string &s, char delim) {
 
 int main(int argc, const char * argv[]) {
 
-    int opt1,opt2=0,n=0,n1,index=0;
+    int opt1,opt2=0,n=0,n1,index=0,saveopt;
 	char option;
     char c;
 	//ask user if he wants to extract information from a file
@@ -368,6 +370,7 @@ int main(int argc, const char * argv[]) {
             bands[i].setSongs(songs);
             j+=15;  // every time finish one band, go to next band, j+=15
             record[i] = 1;
+			bands[i].status = 1; // 1 means the information about this band is completed. it can be stored into database
 			index = i;  // index of last non-empty position of bands[i]
         }
         
@@ -514,7 +517,7 @@ int main(int argc, const char * argv[]) {
 		system("cls");
 #endif // WINDOWS
 //		//maybe add reload file
-		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save into a new file\n\t6. Exit\n\n\tEnter your choice = ";
+		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save your new modified database\n\t6. Exit\n\n\tEnter your choice = ";
 		cin >> opt1;
 		switch (opt1)
 		{
@@ -556,8 +559,18 @@ int main(int argc, const char * argv[]) {
 
 			search();
 			break;
-//		case 4:
-//			break;
+		case 5:
+			cout << "\n\n\t1. Save bands database\n\t2. Save artists database\n\n\tEnter your choice = ";
+			cin >> saveopt;
+			if (saveopt == 1)
+			{
+				savebands();    // improve the menu later **
+			}
+			else {
+				saveartists();
+			}
+
+			break;
 		}
 	}
 
@@ -565,3 +578,153 @@ int main(int argc, const char * argv[]) {
 }
 
 
+void savebands() {
+	char filename[MAX_PATH];
+
+	OPENFILENAME ofn;
+	ZeroMemory(&filename, sizeof(filename));
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+	ofn.lpstrFilter = _T("Text Files\0*.txt\0Any File\0*.*\0");
+	ofn.lpstrFile = filename;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrTitle = _T("Save the database in...");
+	ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+
+	if (GetSaveFileName(&ofn))
+	{
+		std::cout << "Your database has been saved in \"" << filename << "\"\n";
+	}
+	else
+	{
+		// All this stuff below is to tell you exactly how you messed up above. 
+		// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
+		switch (CommDlgExtendedError())
+		{
+		case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
+		case CDERR_FINDRESFAILURE: std::cout << "CDERR_FINDRESFAILURE\n";  break;
+		case CDERR_INITIALIZATION: std::cout << "CDERR_INITIALIZATION\n";  break;
+		case CDERR_LOADRESFAILURE: std::cout << "CDERR_LOADRESFAILURE\n";  break;
+		case CDERR_LOADSTRFAILURE: std::cout << "CDERR_LOADSTRFAILURE\n";  break;
+		case CDERR_LOCKRESFAILURE: std::cout << "CDERR_LOCKRESFAILURE\n";  break;
+		case CDERR_MEMALLOCFAILURE: std::cout << "CDERR_MEMALLOCFAILURE\n"; break;
+		case CDERR_MEMLOCKFAILURE: std::cout << "CDERR_MEMLOCKFAILURE\n";  break;
+		case CDERR_NOHINSTANCE: std::cout << "CDERR_NOHINSTANCE\n";     break;
+		case CDERR_NOHOOK: std::cout << "CDERR_NOHOOK\n";          break;
+		case CDERR_NOTEMPLATE: std::cout << "CDERR_NOTEMPLATE\n";      break;
+		case CDERR_STRUCTSIZE: std::cout << "CDERR_STRUCTSIZE\n";      break;
+		case FNERR_BUFFERTOOSMALL: std::cout << "FNERR_BUFFERTOOSMALL\n";  break;
+		case FNERR_INVALIDFILENAME: std::cout << "FNERR_INVALIDFILENAME\n"; break;
+		case FNERR_SUBCLASSFAILURE: std::cout << "FNERR_SUBCLASSFAILURE\n"; break;
+		default: std::cout << "You cancelled.\n";
+		}
+	}
+	ofstream of;
+	of.open(filename);
+	for (int i = 0; i < bandsize; i++)
+	{
+		if (record[i] == 0)
+		{
+			break;
+		}
+		if (bands[i].status == 1) {
+			of << bands[i].getBandName() << endl;
+			of << bands[i].getBandYear1() << endl;
+			of << bands[i].getBandYear2() << endl;
+			of << bands[i].getGenres() << endl;  // enhence the showband & display band by adding genres and desc
+			of << bands[i].getDesc() << endl;
+
+			list<string> temp = bands[i].getSongs();
+			for (list<string>::iterator it = temp.begin(); it != temp.end(); ++it)  // potential bugs if songs less than 10
+			{
+				of << *it << endl;
+			}
+		}
+	}
+	
+}
+void saveartists() {
+	char filename[MAX_PATH];
+
+	OPENFILENAME ofn;
+	ZeroMemory(&filename, sizeof(filename));
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+	ofn.lpstrFilter = _T("Text Files\0*.txt\0Any File\0*.*\0");
+	ofn.lpstrFile = filename;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrTitle = _T("Save the artists database in...");
+	ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+
+	if (GetSaveFileName(&ofn))
+	{
+		std::cout << "Your database has been saved in \"" << filename << "\"\n";
+	}
+	else
+	{
+		// All this stuff below is to tell you exactly how you messed up above. 
+		// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
+		switch (CommDlgExtendedError())
+		{
+		case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
+		case CDERR_FINDRESFAILURE: std::cout << "CDERR_FINDRESFAILURE\n";  break;
+		case CDERR_INITIALIZATION: std::cout << "CDERR_INITIALIZATION\n";  break;
+		case CDERR_LOADRESFAILURE: std::cout << "CDERR_LOADRESFAILURE\n";  break;
+		case CDERR_LOADSTRFAILURE: std::cout << "CDERR_LOADSTRFAILURE\n";  break;
+		case CDERR_LOCKRESFAILURE: std::cout << "CDERR_LOCKRESFAILURE\n";  break;
+		case CDERR_MEMALLOCFAILURE: std::cout << "CDERR_MEMALLOCFAILURE\n"; break;
+		case CDERR_MEMLOCKFAILURE: std::cout << "CDERR_MEMLOCKFAILURE\n";  break;
+		case CDERR_NOHINSTANCE: std::cout << "CDERR_NOHINSTANCE\n";     break;
+		case CDERR_NOHOOK: std::cout << "CDERR_NOHOOK\n";          break;
+		case CDERR_NOTEMPLATE: std::cout << "CDERR_NOTEMPLATE\n";      break;
+		case CDERR_STRUCTSIZE: std::cout << "CDERR_STRUCTSIZE\n";      break;
+		case FNERR_BUFFERTOOSMALL: std::cout << "FNERR_BUFFERTOOSMALL\n";  break;
+		case FNERR_INVALIDFILENAME: std::cout << "FNERR_INVALIDFILENAME\n"; break;
+		case FNERR_SUBCLASSFAILURE: std::cout << "FNERR_SUBCLASSFAILURE\n"; break;
+		default: std::cout << "You cancelled.\n";
+		}
+	}
+	ofstream of;
+	of.open(filename);
+	for (list<member>::iterator it = MemberList.begin(); it!=MemberList.end(); it++)
+	{
+		of << it->getName() << endl;
+		of << it->getAge() << endl;
+		list<string> l1 = it->getInstrument();
+		list<string> l2 = it->getstayYears();
+		list<string> l3 = it->getbands();
+		for (list<string>::iterator it1 = l1.begin(); it1 != l1.end(); ++it1) //write inst one by one
+		{
+			if (it1 == l1.begin())
+			{
+				of << *it1;
+			}
+			else
+				of << "," << *it1;
+		}
+		of << endl;
+		for (list<string>::iterator it1 = l2.begin(); it1 != l2.end(); ++it1) //write inst one by one
+		{
+			if (it1 == l2.begin())
+			{
+				of << *it1;
+			}
+			else
+				of << "," << *it1;
+		}
+		of << endl;
+		for (list<string>::iterator it1 = l3.begin(); it1 != l3.end(); ++it1) //write inst one by one
+		{
+			if (it1 == l3.begin())
+			{
+				of << *it1;
+			}
+			else
+				of << "," << *it1;
+		}
+		of << endl;
+	}
+
+}

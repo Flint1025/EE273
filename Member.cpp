@@ -98,10 +98,19 @@ string member::getName(){
 //	return gender;
 //}
 
+
+// used in save artists   to copy the three lists then able to write to the file one by one
 list<string> member::getInstrument(){
 	return instruments;
 }
 
+list<string> member::getbands() {
+	return bands;
+}
+
+list<string> member::getstayYears() {
+	return stayYears;
+}
 int member::getAge(){
 	return age;
 }
