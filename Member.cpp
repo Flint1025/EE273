@@ -78,7 +78,7 @@ string member::getstayYear(string bname)  // version when seeing the artilsts in
 }
 
 
-void member::showInstruments2()  // version when seeing all the artilsts
+void member::showInstruments2()  // seeing all the artilsts stored
 {
 	for (list<string>::iterator it1 = instruments.begin(), it2 = bands.begin(), it3 = stayYears.begin(); it1 != instruments.end(); ++it1, ++it2, ++it3) {
 		cout << *it1 << " in " << *it2 << " from " << *it3<< endl;
@@ -86,7 +86,14 @@ void member::showInstruments2()  // version when seeing all the artilsts
 }
 
 
-
+void member::showInstrumentsForSearch(string inst) {//
+	for (list<string>::iterator it1 = instruments.begin(), it2 = bands.begin(), it3 = stayYears.begin(); it1 != instruments.end(); ++it1, ++it2, ++it3) {
+		if (inst == *it1)
+		{
+			cout << name << " in " << *it2 << " from " << *it3 << endl;
+		}
+	}
+}
 
 // attribute getters
 

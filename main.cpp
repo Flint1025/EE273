@@ -55,7 +55,17 @@ band bands[bandsize]; //change to dynamically creation later
 member members[membersize];
 
 list <member> MemberList;
+
+
+list<member> singerlist;
+list<member> guitaristlist;
+list<member> drummerlist;
+
+// need more instruments (create global for all the possible instruments)
+
 //  ------------------------------------****************************
+
+
 
 
 void savebands();
@@ -84,7 +94,6 @@ int getbandnumber(string band){   // to return the position of band in the bands
 }
 
 
-
 void displaybandnums(){
     cout << "You have input information for bands:" << endl << endl;
     for (int i = 0; i < bandsize; i++)
@@ -110,9 +119,12 @@ int search_member(string name) { // display and return 1 if this artist has been
 }
 
 
+
+
 int search() {
 	int opt, temp;
-	string bandname, artistname;
+	int *r = 0;
+	string bandname, inst, artistname;
 	while (1)
 	{
 		system("cls");
@@ -120,47 +132,71 @@ int search() {
 		cin >> opt;
 		switch (opt)
 		{
-		default:
-			break;
-		case 1:
-			getchar();
-			cout << "Input the band name:" << endl;
-			getline(cin, bandname);
-			temp = getbandnumber(bandname);
-			if (temp == -1)
-			{
-				cout << bandname << " has not been stored yet." << endl;
-				cout << "________Input any single character to continue________" << endl;
+			default:
+				break;
+			case 1:
 				getchar();
-				continue;
-			}
-			else {
-				bands[temp].showBand();
-				continue;
-			}
-			break;
-		case 3:
-			getchar();
-			cout << "Input the artist name:" << endl;
-			getline(cin, artistname);
-			temp = search_member(artistname); // if this artist has been stored, this function will diaplay it and then return 1
-			if (temp == 0)   // if this artist has not been stored, then nothing be displayed and function will return 0
-			{
-				cout << artistname << " has not been stored yet";
+				cout << "Input the band name:" << endl;
+				getline(cin, bandname);
+				temp = getbandnumber(bandname);
+				if (temp == -1)
+				{
+					cout << bandname << " has not been stored yet." << endl;
+					cout << "________Input any single character to continue________" << endl;
+					getchar();
+					continue;
+				}
+				else {
+					bands[temp].showBand();
+					continue;
+				}
+				break;
+
+			case 2:
+				getchar();
+				cout << "Input the instrument type:" << endl;  // can be improved by creating new data struct for instruments
+				getline(cin, inst);
+				inst[0] = toupper(inst[0]);
+				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
+					it->showInstrumentsForSearch(inst); // temp will be 0 if nothing printed out
+				}
+				 // ************************* need more types of instruments ****************************************//
+				if (inst != "Singer" && inst != "Drummer" && inst != "Guitarist")  //improve this later
+				{
+					cout << endl << endl << "Sorry, you don't have any " << inst << " stored yet.";
+
+				}
+				//if (temp == 0)  // improve this 
+				//{
+				//	cout << endl << endl << "Sorry, you don't have any " << inst << " stored yet.";
+				//}
 				cout << endl << "________Input any single character to continue________" << endl;
 				getchar();
 				continue;
-			}
-			else // this artist has been stored and now already be displayed. temp shall be 1 here
-			{
-				cout << endl << "________Input any single character to continue________" << endl;
+				break;
+
+			case 3:
 				getchar();
-				continue;
+				cout << "Input the artist name:" << endl;
+				getline(cin, artistname);
+				temp = search_member(artistname); // if this artist has been stored, this function will diaplay it and then return 1
+				if (temp == 0)   // if this artist has not been stored, then nothing be displayed and function will return 0
+				{
+					cout << artistname << " has not been stored yet";
+					cout << endl << "________Input any single character to continue________" << endl;
+					getchar();
+					continue;
+				}
+				else // this artist has been stored and now already be displayed. temp shall be 1 here
+				{
+					cout << endl << "________Input any single character to continue________" << endl;
+					getchar();
+					continue;
+				}
+				break;
+			case 9:
+				return 0;
 			}
-			break;
-		case 9:
-			return 0;
-		}
 		return 0;
 	}
 }
@@ -200,13 +236,15 @@ int modifysingleband(int n, int opt2){
                 getchar();
                 cout << "Enter the name:" << endl;
                 getline(cin, name);
-                
+				name[0] = toupper(name[0]);
+
                 cout << "Enter the birthyear:" << endl;
                 cin >> birthyear;
                 
                 getchar();
                 cout << "Enter the instrument:" << endl;
                 getline(cin, instrument);
+				instrument[0] = toupper(instrument[0]);
                 
                 cout << "Enter the staying year in this band:" << endl;
                 getline(cin, stayYear);
@@ -309,8 +347,6 @@ int main(int argc, const char * argv[]) {
 		}
 		else
 		{
-			// All this stuff below is to tell you exactly how you messed up above. 
-			// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
 			switch (CommDlgExtendedError())
 			{
 			case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
@@ -403,8 +439,6 @@ int main(int argc, const char * argv[]) {
 		}
 		else
 		{
-			// All this stuff below is to tell you exactly how you messed up above. 
-			// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
 			switch (CommDlgExtendedError())
 			{
 			case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
@@ -506,11 +540,7 @@ int main(int argc, const char * argv[]) {
 		cout << "... ..." << endl;
 		cout << "100 ..." << endl;
 	}
-	//implement this main mune after implementing member class
-//	cout << "\n\nType any single charactor to go to the main menu.....";
-//	cin >> c;
-//	// the main menu
-//
+
 	while (1)
 	{
 #ifdef WINDOWS
@@ -569,11 +599,9 @@ int main(int argc, const char * argv[]) {
 			else {
 				saveartists();
 			}
-
 			break;
 		}
 	}
-
     return 0;
 }
 
@@ -585,7 +613,7 @@ void savebands() {
 	ZeroMemory(&filename, sizeof(filename));
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+	ofn.hwndOwner = NULL;  // put its HANDLE here
 	ofn.lpstrFilter = _T("Text Files\0*.txt\0Any File\0*.*\0");
 	ofn.lpstrFile = filename;
 	ofn.nMaxFile = MAX_PATH;
@@ -594,12 +622,14 @@ void savebands() {
 
 	if (GetSaveFileName(&ofn))
 	{
-		std::cout << "Your database has been saved in \"" << filename << "\"\n";
+		std::cout << "Your bands database has been saved in \"" << filename << "\"\n";
+		string s;
+		cout << "__________Input any single character to go back to the main menu__________" << endl;
+		getline(cin, s);
+		getchar();
 	}
 	else
 	{
-		// All this stuff below is to tell you exactly how you messed up above. 
-		// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
 		switch (CommDlgExtendedError())
 		{
 		case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;
@@ -642,7 +672,7 @@ void savebands() {
 			}
 		}
 	}
-	
+
 }
 void saveartists() {
 	char filename[MAX_PATH];
@@ -651,7 +681,7 @@ void saveartists() {
 	ZeroMemory(&filename, sizeof(filename));
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+	ofn.hwndOwner = NULL;  
 	ofn.lpstrFilter = _T("Text Files\0*.txt\0Any File\0*.*\0");
 	ofn.lpstrFile = filename;
 	ofn.nMaxFile = MAX_PATH;
@@ -660,12 +690,14 @@ void saveartists() {
 
 	if (GetSaveFileName(&ofn))
 	{
-		std::cout << "Your database has been saved in \"" << filename << "\"\n";
+		std::cout << "Your artists database has been saved in \"" << filename << "\"\n";
+		string s;
+		cout << "__________Input any single character to go back to the main menu__________" << endl ;
+		getline(cin, s);
+		getchar();
 	}
 	else
 	{
-		// All this stuff below is to tell you exactly how you messed up above. 
-		// Once you've got that fixed, you can often (not always!) reduce it to a 'user cancelled' assumption.
 		switch (CommDlgExtendedError())
 		{
 		case CDERR_DIALOGFAILURE: std::cout << "CDERR_DIALOGFAILURE\n";   break;

@@ -66,6 +66,7 @@ string band::getBandName(){
 void band::showBand(){
     char c;
     cout << "Band: " << BandName << " was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
+	cout << desc << endl;
 	cout << "Genres: " << genres << endl << endl; 
 	cout << "Members: " << endl;
 	for (list<member>::iterator it = memberlist.begin(); it != memberlist.end(); ++it) {

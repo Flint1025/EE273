@@ -41,6 +41,8 @@ public:
 
 	void showInstruments2();
 
+	void showInstrumentsForSearch(string inst);//display this artist's inst experience
+
 
 	string getName();
 //	string getGender();
