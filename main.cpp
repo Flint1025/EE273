@@ -51,7 +51,7 @@ using namespace std;
 
 // *************************----------------------------------
 int record[bandsize]={0};
-band bands[bandsize]; //change to dynamically creation later
+band bands[bandsize]; 
 member members[membersize];
 
 list <member> MemberList;
@@ -154,11 +154,11 @@ int search() {
 
 			case 2:
 				getchar();
-				cout << "Input the instrument type:" << endl;  // can be improved by creating new data struct for instruments
+				cout << "Input the instrument type:" << endl;  
 				getline(cin, inst);
 				inst[0] = toupper(inst[0]);
 				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
-					it->showInstrumentsForSearch(inst); // temp will be 0 if nothing printed out
+					it->showInstrumentsForSearch(inst); //search all the member and all instruments one by one
 				}
 				 // ************************* need more types of instruments ****************************************//
 				if (inst != "Singer" && inst != "Drummer" && inst != "Guitarist")  //improve this later
@@ -166,10 +166,7 @@ int search() {
 					cout << endl << endl << "Sorry, you don't have any " << inst << " stored yet.";
 
 				}
-				//if (temp == 0)  // improve this 
-				//{
-				//	cout << endl << endl << "Sorry, you don't have any " << inst << " stored yet.";
-				//}
+
 				cout << endl << "________Input any single character to continue________" << endl;
 				getchar();
 				continue;
@@ -510,7 +507,7 @@ int main(int argc, const char * argv[]) {
 				}
 
             }
-            
+          
             MemberList.push_back(mb);
             j+=5;
 
