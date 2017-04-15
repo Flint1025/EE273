@@ -6,7 +6,7 @@ This program allows the user to store and modify information about different ban
 #use bands.txt as the band test input file
 
 
-#use member.txt as the artists test input file
+#use member_updated.txt as the artists test input file
 
 
 
