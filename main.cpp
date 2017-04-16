@@ -27,8 +27,8 @@ input checking
 #include "stdafx.h"
 
 #include <iostream>
-#define bandsize 100
-#define membersize 100
+#define bandsize 500
+#define membersize 500
 #define filelength 2000
 #include "Band.hpp"
 #define WINDOWS
@@ -52,14 +52,11 @@ using namespace std;
 // *************************----------------------------------
 int record[bandsize]={0};
 band bands[bandsize]; 
-member members[membersize];
+
 
 list <member> MemberList;
 
 
-list<member> singerlist;
-list<member> guitaristlist;
-list<member> drummerlist;
 
 // need more instruments (create global for all the possible instruments)
 
@@ -119,8 +116,6 @@ int search_member(string name) { // display and return 1 if this artist has been
 }
 
 
-
-
 int search() {
 	int opt, temp;
 	int *r = 0;
@@ -161,13 +156,8 @@ int search() {
 					it->showInstrumentsForSearch(inst); //search all the member and all instruments one by one
 				}
 				 // ************************* need more types of instruments ****************************************//
-				if (inst != "Singer" && inst != "Drummer" && inst != "Guitarist")  //improve this later
-				{
-					cout << endl << endl << "Sorry, you don't have any " << inst << " stored yet.";
 
-				}
-
-				cout << endl << "________Input any single character to continue________" << endl;
+				cout << endl << endl << "________Input any single character to continue________" << endl;
 				getchar();
 				continue;
 				break;
@@ -284,7 +274,7 @@ int modifysingleband(int n, int opt2){
         }
         cout<<"\n\nInput anything to continue.....";
         char c;
-        cin>>c;   // bug to be fixed
+        cin>>c;   
     }
 }
 
@@ -331,7 +321,7 @@ int main(int argc, const char * argv[]) {
 		ZeroMemory(&filename, sizeof(filename));
 		ZeroMemory(&ofn, sizeof(ofn));
 		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+		ofn.hwndOwner = NULL;  
 		ofn.lpstrFilter = "Text Files\0*.txt\0Any File\0*.*\0";
 		ofn.lpstrFile = filename;
 		ofn.nMaxFile = MAX_PATH;
@@ -544,7 +534,7 @@ int main(int argc, const char * argv[]) {
 		system("cls");
 #endif // WINDOWS
 //		//maybe add reload file
-		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save your new modified database\n\t6. Exit\n\n\tEnter your choice = ";
+		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save your new modified database\n\t9. Exit\n\n\tEnter your choice = ";
 		cin >> opt1;
 		switch (opt1)
 		{
@@ -587,7 +577,7 @@ int main(int argc, const char * argv[]) {
 			search();
 			break;
 		case 5:
-			cout << "\n\n\t1. Save bands database\n\t2. Save artists database\n\n\tEnter your choice = ";
+			cout << "\n\n\t1. Save bands database(only the bands with all the information allocated will be saved into your new database e.g. desc,genres,10 songs.)\n\t2. Save artists database\n\n\tEnter your choice = ";
 			cin >> saveopt;
 			if (saveopt == 1)
 			{
@@ -597,6 +587,8 @@ int main(int argc, const char * argv[]) {
 				saveartists();
 			}
 			break;
+		case 9:
+			return 0;
 		}
 	}
     return 0;
@@ -663,11 +655,19 @@ void savebands() {
 			of << bands[i].getDesc() << endl;
 
 			list<string> temp = bands[i].getSongs();
-			for (list<string>::iterator it = temp.begin(); it != temp.end(); ++it)  // potential bugs if songs less than 10
-			{
-				of << *it << endl;
-			}
-		}
+			int count = 0;
+
+				for (list<string>::iterator it = temp.begin(); it != temp.end(); ++it)  // potential bugs if songs less than 10
+				{
+					of << *it << endl;  // save 10 songs into the database
+					count++;
+					if (count == 10)
+					{
+						break;
+					}
+				}
+		
+		}  // only chose 10 songs is due to how we decide the format of the database file at the beginning. 
 	}
 
 }

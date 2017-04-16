@@ -11,6 +11,11 @@
 #define WINDOWS
 band::band(){
 	BandName = "Unnamed Band";
+	desc = "None";
+	genres = "None";
+	BandYear[0] = 0;
+	BandYear[1] = 0;
+	status = 0;
 }
 
 band::band(string fn){   // fn is the file name
@@ -49,6 +54,14 @@ string band::getGenres() {
 
 string band::getDesc() {
 	return desc;
+}
+
+void band::updata_status()
+{
+	if (songslist.size()!=0 && BandName!= "Unnamed Band" && genres != "None" && desc != "None" && BandYear[0] != 0 && BandYear[1] != 0)
+	{
+		status = 1;
+	}
 }
 
 int band::getBandYear1() {
@@ -118,7 +131,7 @@ void band::editBand(){
 #ifdef WINDOWS
         system("cls");
 #endif // WINDOWS
-        cout<<"\n\n\n\tBand: "<< BandName <<"\n\n\t1. Change the name of this band\n\t2. Change the year of this band\n\t3. Change genres of this band\n\t4. Add new song to this band\n\t5. Display information for this band\n\t6. Back to edition menu\n\n\tEnter your choice = ";
+        cout<<"\n\n\n\tBand: "<< BandName <<"\n\n\t1. Change the name of this band\n\t2. Change the year of this band\n\t3. Change genres of this band\n\t4. Change descrption of this band\n\t5. Add new song to this band\n\t6. Display information for this band\n\t7. Back to edition menu\n\n\tEnter your choice = ";
         cin>>opt;
         cout<<endl;
 	
@@ -132,6 +145,7 @@ void band::editBand(){
                 cout << "Enter the new name for this band:" << endl;
                 getline(cin, temp);    // bug input a line  // '\n' in the buffer
                 setBandName(temp);
+				updata_status();
                 break;
             case 2:
                 cout << "Enter the year when the band was formed:" << endl;
@@ -139,25 +153,35 @@ void band::editBand(){
                 cout << "Enter the last year when the band was active: " << endl;
                 cin >> temp2;
                 setBandYear(temp1, temp2);
+				updata_status();
                 break;
             case 3:
                 getchar();
                 cout << "Enter the genres of this band:" << endl;
                 getline(cin, temp);
                 setGenres(temp);
+				updata_status();
                 break;
+			case 4:
+				getchar();
+				cout << "Enter the descrption of this band:" << endl;
+				getline(cin, temp);
+				setDesc(temp);
+				updata_status();
+				break;
 
-
-            case 4:
+            case 5:
                 getchar();
                 cout << "Enter new song of this band:" << endl;
                 getline(cin, temp);
                 songslist.push_back(temp);
-                break;
-            case 5:
-                showBand();
+				updata_status();
                 break;
             case 6:
+                showBand();
+				updata_status();
+                break;
+            case 7:
                 end = true;
                 break;
         }

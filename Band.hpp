@@ -48,7 +48,7 @@ public:
 	list<string> getSongs();
     void setDesc(string desc);
 
-
+	void updata_status();
 	int getBandYear1();
 	int getBandYear2();
 	//getter functions
