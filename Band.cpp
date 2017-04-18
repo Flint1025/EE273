@@ -5,7 +5,6 @@
 //  Created by FAN XIAOFENG on 4/3/17.
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
-#include "stdafx.h"
 
 #include "Band.hpp"
 #define WINDOWS

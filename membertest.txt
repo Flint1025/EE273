@@ -5,7 +5,7 @@ Vocals
 Red Hot Chili Peppers
 Michael Balzary (Flea)
 1962
-Guitarist
+Guitaristist
 1983-2017
 Red Hot Chili Peppers
 Chad Smith
@@ -15,12 +15,12 @@ Drummer,Drummer,Drummer,Drummer,Drummer,Drummer,Drummer,Drummer,Drummer
 Red Hot Chili Peppers,Chickenfoot,Chad Smith's Bombastic Meatbats,Glenn Hughes,HSAS,The Process,Residente,Tom Morello,Dick Van Dyke
 John Frusciante
 1970
-Guitarist,Guitarist,Guitarist,Guitarist,Guitarist,Guitarist,Guitarist,Guitarist,Guitarist,Guitarist
+Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist,Guitaristist
 1991-2017,1990-1991,1987-1989,1994-1995,1995-1999,2001-2002,2001-2009,2004-2006,2006-2009,2014-2016		
 Red Hot Chili Peppers,Ataxia,Josh Klinghoffer,The Mars Volta,Omar Rodríguez-López,Wu-Tang Clan,Black Knights,Venetian Snares,Fugazi,Duran Duran
 Hillel Slovak
 1962
-Guitarist,Guitarist
+Guitaristist,Guitaristist
 1983-1987,1979-1982
 Red Hot Chili Peppers,What Is This?
 Jack Irons
@@ -115,7 +115,7 @@ Vocals
 Queen
 John Deacon
 1951
-Guitarist,Guitarist,Guitarist,Guitarist
+Guitaristist,Guitaristist,Guitarist,Guitarist
 1970-1997,1991-1996,1995-1997,1994-1995
 Queen,Man Friday & Jive Junior,The Immortals,Hot Chocolate
 Brian May
@@ -128,3 +128,8 @@ Roger Taylor
 Drummer,Drummer,Drummer,Drummer
 1970-2017,1989-1995,1991-1991,2001-2003
 Queen,The Cross,Smile,Yoshiki
+Testmember
+1993
+Keyboard
+1990-2015
+Smile

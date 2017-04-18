@@ -6,7 +6,6 @@
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
 
-#include "stdafx.h"
 
 #include "Member.hpp"
 #include <iostream>

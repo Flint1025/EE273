@@ -24,7 +24,6 @@ input checking
 
 
 
-#include "stdafx.h"
 
 #include <iostream>
 #define bandsize 500
@@ -45,7 +44,7 @@ input checking
 #define NOMINMAX
 #endif
 #include <windows.h>
-#include "main.h"
+//#include "main.h"
 using namespace std;
 
 
@@ -57,8 +56,6 @@ band bands[bandsize];
 list <member> MemberList;
 
 
-
-// need more instruments (create global for all the possible instruments)
 
 //  ------------------------------------****************************
 
