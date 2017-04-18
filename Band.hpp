@@ -23,7 +23,6 @@ class band{
 private:
     string BandName;   //name of this band
     string genres;
-    string producers;
     string desc;
     list<string> songslist;
     
@@ -32,7 +31,6 @@ private:
     list<member> memberlist;     // a vector of pointers which points to objects
 	list<string> memberyear;     // one to one corresponding
 public:
-	string getMemberyear();
 
     band();
     band(string fn); // constructor using data from a flie named fn

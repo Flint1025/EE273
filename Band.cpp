@@ -83,7 +83,7 @@ void band::showBand(){
 	cout << "Genres: " << genres << endl << endl; 
 	cout << "Members: " << endl;
 	for (list<member>::iterator it = memberlist.begin(); it != memberlist.end(); ++it) {
-		cout << endl << it->getName() << " as the " << it->getInstrument(BandName);
+		cout << endl << it->getName() << " as the " << it->getInstrument(BandName) << " for " << it->getstayYear(BandName);
 	}
 	cout << endl << endl << "Songs: ";
     for (list<string>::iterator it=songslist.begin(); it!=songslist.end(); ++it) {

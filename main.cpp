@@ -12,7 +12,7 @@
 
 //                         D:\Users\kxb16204\Desktop\EE273-master\bands.txt
 //                         D:\Users\kxb16204\Desktop\EE273-master\member.txt
-// may consider move some functions to a functions.cpp
+// 
 
 /*bugs
 
@@ -107,7 +107,7 @@ void displaybandnums(){
 int search_member(string name) { // display and return 1 if this artist has been stored
 	for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {    
 		if (name == it->getName()) {
-			cout << endl << name << " was born in " << it->getAge() <<"\nExperience: \n";
+			cout << endl << name << " was born in " << it->getbirthYear() <<"\nExperience: \n";
 			it->showInstruments2();
 			return 1;
 		}
@@ -123,7 +123,7 @@ int search() {
 	while (1)
 	{
 		system("cls");
-		cout << "\n\n\t1. Search information for a band stored\n\t2. Search for an instrument stored\n\t3. Search for an artist stored\n\t9. Back to the main menu\n\n\tEnter your choice = ";
+		cout << "\n\n\t1. Search information for a band stored\n\t2. Search for an instrument stored\n\t3. Search for an artist stored\n\t9. Back to the main menu\n\n\tEnter your choice(only integer input accepted) = ";
 		cin >> opt;
 		switch (opt)
 		{
@@ -199,14 +199,14 @@ int modifysingleband(int n, int opt2){
     system("cls");
 #endif // WINDOWS
     displaybandnums();
-    cout<<"\nEnter the band number for which band you want to view or modify details: ";
+    cout<<"\nEnter the band number for which band you want to view or modify details(only integer input accepted): ";
     cin>>n;
     n = n-1;
     while (1) {
 #ifdef WINDOWS
         system("cls");
 #endif // WINDOWS
-        cout<<"\n\n\n\tBand no = "<<n+1<<"\t"<< bands[n].getBandName() << "\n\n\t1. Edit information for this band\n\t2. Add new member for this band\n\t3. Display information about this band\n\t4. Change to another band to modify\n\t9. Back to the main menu\n\n\t\n\nEnter your choice = ";
+        cout<<"\n\n\n\tBand no = "<<n+1<<"\t"<< bands[n].getBandName() << "\n\n\t1. Edit information for this band\n\t2. Add new member for this band\n\t3. Display information about this band\n\t4. Change to another band to modify\n\t9. Back to the main menu\n\n\t\n\nEnter your choice(only integer input accepted) = ";
         cin>>opt2;
         cout<<endl;
 
@@ -233,14 +233,14 @@ int modifysingleband(int n, int opt2){
                 getline(cin, instrument);
 				instrument[0] = toupper(instrument[0]);
                 
-                cout << "Enter the staying year in this band:" << endl;
+                cout << "Enter the staying year in this band:(e.g. input 1990-2015)" << endl;
                 getline(cin, stayYear);
                 
                 //	bands[n].addmember(w,x,y,z);  // create the object and push into the list under band class
                 
                 mb.setName(name);
                 mb.setInstrument(instrument, bands[n].getBandName(), stayYear);
-                mb.setAge(birthyear);
+                mb.setbirthYear(birthyear);
                 
                 bands[n].addmember(mb);    // create the object and push into the list under band class
                 
@@ -264,7 +264,7 @@ int modifysingleband(int n, int opt2){
             case 4:  // display the bands which have been stored
                 displaybandnums();
                 
-                cout<< endl << "Enter band number: ";
+                cout<< endl << "Enter band number(only integer input accepted): ";
                 cin>>n;
                 n--;
                 break;
@@ -331,7 +331,7 @@ int main(int argc, const char * argv[]) {
 		if (GetOpenFileNameA(&ofn))
 		{
 			std::cout << "You hava sucessfully loaded the file \"" << filename << "\"\n";
-		}
+		} 
 		else
 		{
 			switch (CommDlgExtendedError())
@@ -534,7 +534,7 @@ int main(int argc, const char * argv[]) {
 		system("cls");
 #endif // WINDOWS
 //		//maybe add reload file
-		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save your new modified database\n\t9. Exit\n\n\tEnter your choice = ";
+		cout << "\n\n\t1. View all the bands stored\n\t2. View all the artists stored\n\t3. View and modify a single band\n\t4. Search\n\t5. Save your new modified database\n\t9. Exit\n\n\tEnter your choice(only integer input accepted)= ";
 		cin >> opt1;
 		switch (opt1)
 		{
@@ -560,7 +560,7 @@ int main(int argc, const char * argv[]) {
 		case 2:
 			system("cls");
 			for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
-				cout << endl << it->getName() << " born in " << it->getAge() << "." << " Experience: " << endl;
+				cout << endl << it->getName() << " born in " << it->getbirthYear() << "." << " Experience: " << endl;
 				it->showInstruments2();
 			}
 
@@ -577,7 +577,7 @@ int main(int argc, const char * argv[]) {
 			search();
 			break;
 		case 5:
-			cout << "\n\n\t1. Save bands database(only the bands with all the information allocated will be saved into your new database e.g. desc,genres,10 songs.)\n\t2. Save artists database\n\n\tEnter your choice = ";
+			cout << "\n\n\t1. Save bands database(only the bands with all the information allocated will be saved into your new database e.g. desc,genres,10 songs.)\n\t2. Save artists database\n\n\tEnter your choice(only integer input accepted) = ";
 			cin >> saveopt;
 			if (saveopt == 1)
 			{
@@ -720,7 +720,7 @@ void saveartists() {
 	for (list<member>::iterator it = MemberList.begin(); it!=MemberList.end(); it++)
 	{
 		of << it->getName() << endl;
-		of << it->getAge() << endl;
+		of << it->getbirthYear() << endl;
 		list<string> l1 = it->getInstrument();
 		list<string> l2 = it->getstayYears();
 		list<string> l3 = it->getbands();

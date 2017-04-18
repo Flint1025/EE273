@@ -18,11 +18,11 @@ using namespace std;
 class member{
 private:
 	string name;
-//	string gender;
+
 	list<string> instruments;  //two lists corresponds to each other one to one
 	list<string> bands;
 	list<string> stayYears;
-	int age;
+	int birthyear;
 
 
 
@@ -34,10 +34,10 @@ public:
 	void setName(string);
 //	void setGender(string);
 	void setInstrument(string,string,string);
-	void setAge(int);
+	void setbirthYear(int);
 
 	string getInstrument(string);
-	string getstayYear(string bname);
+	string getstayYear(string bname); // used when seeing this artist inside a single band
 
 	void showInstruments2();
 
@@ -51,9 +51,9 @@ public:
 	list<string> getbands();
 
 
-	list<string> getstayYears();
+	list<string> getstayYears();//return the whole list
 
-	int getAge();
+	int getbirthYear();
 
 
 	//list of instruments

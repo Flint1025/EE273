@@ -17,7 +17,7 @@ member::member(){
 
 	name = "";
 //	gender = 'x';
-	age = 0;
+	birthyear = 0;
 
 }
 
@@ -27,19 +27,18 @@ member::member(string w, string y, int z){
 	name = w;
 //	gender = x;
 	instruments.push_back(y);
-	age = z;
+	birthyear = z;
 
 }
 member::member(string name, int birthYear, list<string> inst, list<string> year, list<string> band){
     this-> name = name;
-    age = birthYear;
+    birthyear = birthYear;
     instruments = inst;
     stayYears = year;
     bands = band;
 }
 
 
-// attribute setters, n for name and a for age etc.
 
 void member::setName(string n){
 	name = n;
@@ -55,8 +54,8 @@ void member::setInstrument(string i, string b, string y){
 	stayYears.push_back(y);
 }
 
-void member::setAge(int a){
-	age = a;
+void member::setbirthYear(int a){
+	birthyear = a;
 }
 
 
@@ -115,11 +114,11 @@ list<string> member::getbands() {
 	return bands;
 }
 
-list<string> member::getstayYears() {
+list<string> member::getstayYears() {//return the whole list
 	return stayYears;
 }
-int member::getAge(){
-	return age;
+int member::getbirthYear(){
+	return birthyear;
 }
 
 
