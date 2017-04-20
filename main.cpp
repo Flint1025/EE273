@@ -38,6 +38,8 @@ input checking
 #include <list>
 #include <iterator>
 
+#include <algorithm> 
+
 #include<tchar.h>
 
 #ifndef NOMINMAX
@@ -55,6 +57,7 @@ band bands[bandsize];
 
 list <member> MemberList;
 
+list <string> instruments;  /// new stuff
 
 
 //  ------------------------------------****************************
@@ -128,6 +131,19 @@ int search() {
 				break;
 			case 1:
 				getchar();
+				cout << "You have the following bands stored: " << endl;
+
+				for (int i = 0; i < bandsize; i++)
+				{
+					if (record[i]==1)
+					{
+						cout << bands[i].getBandName() << endl;
+					}
+				}
+
+
+				cout << endl << "---------------------------------------------------" << endl;
+
 				cout << "Input the band name:" << endl;
 				getline(cin, bandname);
 				temp = getbandnumber(bandname);
@@ -146,7 +162,14 @@ int search() {
 
 			case 2:
 				getchar();
-				cout << "Input the instrument type:" << endl;  
+				cout << "You have the following types of instruments stored: " << endl;
+
+				for (list<string>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+				{
+					cout << *it << endl;
+				}
+
+				cout << endl << "---------------------------------------------------"<< endl <<"Input the instrument type:" << endl;  
 				getline(cin, inst);
 				inst[0] = toupper(inst[0]);
 				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
@@ -161,6 +184,16 @@ int search() {
 
 			case 3:
 				getchar();
+
+				cout << "You have the following artists stored: " << endl;
+
+				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it)
+				{
+					cout << it->getName() << endl;
+				}
+
+				cout << endl << "---------------------------------------------------" << endl;
+
 				cout << "Input the artist name:" << endl;
 				getline(cin, artistname);
 				temp = search_member(artistname); // if this artist has been stored, this function will diaplay it and then return 1
@@ -524,6 +557,28 @@ int main(int argc, const char * argv[]) {
 		cout << "... ..." << endl;
 		cout << "100 ..." << endl;
 	}
+
+	// building up the global instruments list
+
+	for (list<member>::iterator it = MemberList.begin(); it!= MemberList.end(); ++it)
+	{
+		list<string> itt = it->getInstrument();
+		for (list<string>::iterator it2 = itt.begin(); it2 != itt.end(); ++it2)
+		{
+			string temp = *it2;
+			if (!(find(instruments.begin(), instruments.end(), temp)!=instruments.end()))
+			{
+				instruments.push_back(temp);
+			}
+		}
+	}
+
+
+
+
+
+	//beginning of user menu
+
 
 	while (1)
 	{
