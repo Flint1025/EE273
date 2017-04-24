@@ -1,10 +1,4 @@
-//
-//  Band.hpp
-//  EE273_v2.0
-//
-//  Created by FAN XIAOFENG on 4/3/17.
-//  Copyright © 2017 Fan Xiaofeng. All rights reserved.
-//
+﻿
 
 #ifndef Band_hpp
 #define Band_hpp

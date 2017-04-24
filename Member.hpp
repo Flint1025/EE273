@@ -1,10 +1,4 @@
-//
-//  Member.hpp
-//  EE273_v2.0
-//
-//  Created by FAN XIAOFENG on 6/3/17.
-//  Copyright © 2017 Fan Xiaofeng. All rights reserved.
-//
+﻿
 
 #ifndef Member_hpp
 #define Member_hpp
