@@ -1,5 +1,4 @@
 
-#include "stdafx.h"
 
 #include "Band.hpp"
 #define WINDOWS

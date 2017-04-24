@@ -1,6 +1,5 @@
-﻿
 
-#include "stdafx.h"
+
 
 #include "Member.hpp"
 #include <iostream>

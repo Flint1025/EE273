@@ -1,4 +1,4 @@
-﻿
+
 
 #ifndef Member_hpp
 #define Member_hpp

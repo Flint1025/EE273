@@ -1,7 +1,6 @@
-﻿
 
 
-#include "stdafx.h"
+
 
 #include <iostream>
 #define bandsize 500
@@ -16,13 +15,15 @@
 #include <list>
 #include <iterator>
 
-#include<tchar.h>
+#include <algorithm> // for using .find()
 
+
+#include<tchar.h>
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
 #include <windows.h>
-#include "main.h"
+//#include "main.h"
 using namespace std;
 
 
@@ -33,17 +34,14 @@ band bands[bandsize];
 
 list <member> MemberList;
 
+list <string> instruments;  //
 
-
-// need more instruments (create global for all the possible instruments)
 
 //  ------------------------------------****************************
-
-
-
-
 void savebands();
 void saveartists();
+
+
 // this function will firstly check if this artist has been added into the global memberlist list
 // if yes, add this new exprience to this artist then return 1
 // if no, return 0
@@ -74,7 +72,7 @@ void displaybandnums(){
     {
         if (record[i] == 1)   // record[i] is 1 if the band has been added
         {
-            cout << i+1 << " " << bands[i].getBandName();   // implement another version withour repeated prompt
+            cout << i+1 << " " << bands[i].getBandName();   
             cout << endl;
         }
     }
@@ -108,6 +106,19 @@ int search() {
 				break;
 			case 1:
 				getchar();
+				cout << "You have the following bands stored: " << endl;
+
+				for (int i = 0; i < bandsize; i++)
+				{
+					if (record[i]==1)
+					{
+						cout << bands[i].getBandName() << endl;
+					}
+				}
+
+
+				cout << endl << "---------------------------------------------------" << endl;
+
 				cout << "Input the band name:" << endl;
 				getline(cin, bandname);
 				temp = getbandnumber(bandname);
@@ -126,7 +137,14 @@ int search() {
 
 			case 2:
 				getchar();
-				cout << "Input the instrument type:" << endl;  
+				cout << "You have the following types of instruments stored: " << endl;
+
+				for (list<string>::iterator it = instruments.begin(); it != instruments.end(); ++it)
+				{
+					cout << *it << endl;
+				}
+
+				cout << endl << "---------------------------------------------------"<< endl <<"Input the instrument type:" << endl;  
 				getline(cin, inst);
 				inst[0] = toupper(inst[0]);
 				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
@@ -141,6 +159,16 @@ int search() {
 
 			case 3:
 				getchar();
+
+				cout << "You have the following artists stored: " << endl;
+
+				for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it)
+				{
+					cout << it->getName() << endl;
+				}
+
+				cout << endl << "---------------------------------------------------" << endl;
+
 				cout << "Input the artist name:" << endl;
 				getline(cin, artistname);
 				temp = search_member(artistname); // if this artist has been stored, this function will diaplay it and then return 1
@@ -505,6 +533,28 @@ int main(int argc, const char * argv[]) {
 		cout << "100 ..." << endl;
 	}
 
+	// building up the global instruments list
+
+	for (list<member>::iterator it = MemberList.begin(); it!= MemberList.end(); ++it)
+	{
+		list<string> itt = it->getInstrument();
+		for (list<string>::iterator it2 = itt.begin(); it2 != itt.end(); ++it2)
+		{
+			string temp = *it2;
+			if (!(find(instruments.begin(), instruments.end(), temp)!=instruments.end()))
+			{
+				instruments.push_back(temp);
+			}
+		}
+	}
+
+
+
+
+
+	//beginning of user menu
+
+
 	while (1)
 	{
 #ifdef WINDOWS
@@ -698,7 +748,7 @@ void saveartists() {
 	{
 		of << it->getName() << endl;
 		of << it->getbirthYear() << endl;
-		list<string> l1 = it->getInstrument();
+		list<string> l1 = it->getInstrument(); // the three lists are in one-to-one corresponding
 		list<string> l2 = it->getstayYears();
 		list<string> l3 = it->getbands();
 		for (list<string>::iterator it1 = l1.begin(); it1 != l1.end(); ++it1) //write inst one by one
@@ -711,7 +761,7 @@ void saveartists() {
 				of << "," << *it1;
 		}
 		of << endl;
-		for (list<string>::iterator it1 = l2.begin(); it1 != l2.end(); ++it1) //write inst one by one
+		for (list<string>::iterator it1 = l2.begin(); it1 != l2.end(); ++it1) //write stayYears one by one
 		{
 			if (it1 == l2.begin())
 			{
@@ -721,7 +771,7 @@ void saveartists() {
 				of << "," << *it1;
 		}
 		of << endl;
-		for (list<string>::iterator it1 = l3.begin(); it1 != l3.end(); ++it1) //write inst one by one
+		for (list<string>::iterator it1 = l3.begin(); it1 != l3.end(); ++it1) //write bands one by one
 		{
 			if (it1 == l3.begin())
 			{

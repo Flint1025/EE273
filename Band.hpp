@@ -1,4 +1,4 @@
-﻿
+
 
 #ifndef Band_hpp
 #define Band_hpp
