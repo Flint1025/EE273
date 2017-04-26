@@ -1,17 +1,12 @@
-//
+﻿//
 //  main.cpp
 //  EE273_v2.0
 //
 //  Created by FAN XIAOFENG on 4/3/17.
 //  Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
-//                       C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
-//
-//                   mac:     /Users/Flint/Desktop/member.txt
-//                     sp:   C:\Users\XFAN0\Desktop\Project_EE273-Version2.1\bands.txt
 
-//                         D:\Users\kxb16204\Desktop\EE273-master\bands.txt
-//                         D:\Users\kxb16204\Desktop\EE273-master\member.txt
+
 // 
 
 /*bugs
