@@ -1,11 +1,10 @@
 //
-//  Band.cpp
-//  EE273_v2.0
+// Band.cpp
+// EE273
 //
-//  Created by FAN XIAOFENG on 4/3/17.
-//  Copyright Â© 2017 Fan Xiaofeng. All rights reserved.
+// Created by FAN XIAOFENG on 6/3/17.
+// Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
-#include "stdafx.h"
 
 #include "Band.hpp"
 #define WINDOWS
@@ -107,7 +106,6 @@ void band::addmember(string w, string y, int z)
 }
 
 void band::showBand2(){
-	char c;
 	cout << "-------------------******************-------------------" << endl;
 	cout << "Band: " << BandName << " was formed in " << BandYear[0] << " and active until " << BandYear[1] << endl;
 	cout << "Genres: " << genres << endl;

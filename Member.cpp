@@ -1,18 +1,16 @@
 //
-//  Member.cpp
-//  EE273_v2.0
+// Member.cpp
+// EE273
 //
-//  Created by FAN XIAOFENG on 6/3/17.
-//  Copyright Â© 2017 Fan Xiaofeng. All rights reserved.
+// Created by FAN XIAOFENG on 6/3/17.
+// Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
 
-#include "stdafx.h"
 
 #include "Member.hpp"
 #include <iostream>
 using namespace std;
 
-// attribute configuration
 member::member(){
 
 	name = "";
