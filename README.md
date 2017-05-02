@@ -2,7 +2,8 @@
 
 # EE273 Class project -- Band Family Tree program
 
-This is a win32 console application project from EE273:Design of Software Development at University of Strathlyde.
+This is a win32 console application project from EE273:Design of Software Development at University of Strathclyde.
+
 
 # What it dose
 
@@ -15,6 +16,8 @@ Visual studio 2017 is recommended. After building up the project, one change of 
 project properties -> General -> Character Set -> Use multi-byte character set
 
 Then just follow the instructions of the user-menu
+
+# Attention
 
 #Do not input character while integer input is required
 
