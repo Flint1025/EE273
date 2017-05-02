@@ -2,19 +2,25 @@
 
 # EE273 Class project -- Band Family Tree program
 
-//win32 console application
+This is a win32 console application project from EE273:Design of Software Development at University of Strathlyde.
 
-This program allows the user to store information about different bands and related artists whether from extracting a pre-saved database file or from console input. It supports information mofidication and search based on band, artist or instrument and is able to save the modified data into new database files.
+# What it dose
 
-A dialog box for reading and saving files is implemented using Windows API. 
-Visual studio 2017 is recommended. Before running the program, one change of setting needs to be done:
+This program allows the user to store information about different bands and related artists whether from extracting a pre-saved database file or from console input. It supports information mofidication&searching based on band, artist or instrument and is able to output new modified database files
+
+# How to run program
+
+Visual studio 2017 is recommended. After building up the project, one change of setting needs to be done before running the program:
 
 project properties -> General -> Character Set -> Use multi-byte character set
 
-#use bandDatabase.txt as the band database iput file#
+Then just follow the instructions of the user-menu
 
+#Do not input character while integer input is required
 
-#use artistDatabase.txt as the artists database input file#
+#use bandDatabase.txt as the band database iput file
+
+#use artistDatabase.txt as the artists database input file
 
 
 
