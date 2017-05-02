@@ -1,5 +1,8 @@
 
+
 # EE273 Class project -- Band Family Tree program
+
+//win32 console application
 
 This program allows the user to store information about different bands and related artists whether from extracting a pre-saved database file or from console input. It supports information mofidication and search based on band, artist or instrument and is able to save the modified data into new database files.
 
