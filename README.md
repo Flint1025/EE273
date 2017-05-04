@@ -2,7 +2,7 @@
 
 # EE273 Class project -- Band Family Tree program
 
-This is a win32 console application project from EE273:Design of Software Development at University of Strathclyde.
+This is a win32 console application project from EE273:Design of Software Development at University of Strathclyde. It has been demoed to the lecturer. More details of comments and code clean-up will be done soon.
 
 
 # What it dose
@@ -24,7 +24,6 @@ Then just follow the instructions of the user-menu
 #use bandDatabase.txt as the band database iput file
 
 #use artistDatabase.txt as the artists database input file
-
 
 
 
