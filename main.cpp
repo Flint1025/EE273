@@ -3,13 +3,13 @@
 // EE273
 //
 // Created by FAN XIAOFENG on 6/3/17.
-// Copyright © 2017 Fan Xiaofeng. All rights reserved.
+// Copyright Â© 2017 Fan Xiaofeng. All rights reserved.
 //
 
 
 #include "Band.hpp"
 
-#define bandsize 500
+#define bandsize 500  
 #define membersize 500
 #define filelength 2000
 
@@ -34,24 +34,26 @@
 using namespace std;
 
 
-// *************************global----------------------------------
-int record[bandsize]={0};
-band bands[bandsize]; 
+// *************************global*************************
+int record[bandsize]={0};  // record[i] will be updated to 1 if band[i] has been filled in an object
+band bands[bandsize];      // a global array holding band objects
 
-
-list <member> MemberList;
-
+list <member> MemberList;  
 list <string> instruments;  
 
+//  *******************************************************
 
-//  ------------------------------------****************************
-void savebands();
+// to save the modified database
+void savebands();   
 void saveartists();
 
 
-// this function will firstly check if this artist has been added into the global memberlist list
-// if yes, add this new exprience to this artist then return 1
-// if no, return 0
+
+
+// add a member's experiences into the global list
+/* this function will firstly check if this artist has been added into the global memberlist list
+if yes, add this new exprience to this artist then return 1
+if no, return 0 */
 int add_member_global(string name, string band, string instrument, string stayYear) { // return 1 if this artist has been stored
 	for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {    // if has been stored, just add a new instrument for this artist
 		if (name == it->getName()) {
@@ -62,14 +64,14 @@ int add_member_global(string name, string band, string instrument, string stayYe
 	return 0;  // return 0 if this artist has not been stored
 }
 
-//  ------------------------------------****************************
+//  -------------------------------------------------------------
 int getbandnumber(string band){   // to return the position of band in the bands[] array
     for (int i = 0; i < bandsize; i++) {
         if (bands[i].getBandName() == band) {
             return i;
         }
     }
-    return -1;  // return -1 if this band hasn't been store yet
+    return -1;  // return -1 if this band hasn't been stored yet
 }
 
 
@@ -97,7 +99,7 @@ int search_member(string name) { // display and return 1 if this artist has been
 	return 0;  // return 0 if this artist has not been stored
 }
 
-
+// the search menu
 int search() {
 	int opt, temp;
 	int *r = 0;
@@ -201,7 +203,7 @@ int search() {
 
 
 
-
+// menu for modify a specific band
 
 int modifysingleband(int n, int opt2){
 #ifdef WINDOWS
@@ -219,7 +221,7 @@ int modifysingleband(int n, int opt2){
         cin>>opt2;
         cout<<endl;
 
-		string name, instrument, stayYear;
+	string name, instrument, stayYear;
         int birthyear;
         member mb;
         switch(opt2)
@@ -228,7 +230,7 @@ int modifysingleband(int n, int opt2){
                 cout<<"Invalid input";
                 break;
                 
-            case 2:   // implement addnew() as add a new member object into the vector
+            case 2:   
                 getchar();
                 cout << "Enter the name:" << endl;
                 getline(cin, name);
@@ -257,7 +259,7 @@ int modifysingleband(int n, int opt2){
 				{                                                                      // return 0 if this member has been created and the new "experience" has been stored
 					MemberList.push_back(mb); // put this object into the global MemberList for future process
 				}
-                // It seemed cannot declare a new member inside the switch
+                
                 break;
                 //
             case 1:
