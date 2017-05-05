@@ -10,8 +10,8 @@
 #include "Band.hpp"
 
 #define BANDSIZE 500  
-#define membersize 500
-#define filelength 2000
+#define MEMBERSIZE 500
+#define FILELENGTH 2000
 
 #define WINDOWS
 
@@ -321,7 +321,7 @@ int main(int argc, const char * argv[]) {
     //extract information from the file and build those objects up ready to process
 	if (option == 'y')
 	{
-		string f[filelength], f2[filelength],fname, fname2, fline, fline2;  //fname2, fline2 are used for member file
+		string f[FILELENGTH], f2[FILELENGTH],fname, fname2, fline, fline2;  //fname2, fline2 are used for member file
         ifstream iF,iF2;
 
 
