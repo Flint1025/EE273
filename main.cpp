@@ -9,7 +9,7 @@
 
 #include "Band.hpp"
 
-#define bandsize 500  
+#define BANDSIZE 500  
 #define membersize 500
 #define filelength 2000
 
@@ -35,8 +35,8 @@ using namespace std;
 
 
 // *************************global*************************
-int record[bandsize]={0};  // record[i] will be updated to 1 if band[i] has been filled in an object
-band bands[bandsize];      // a global array holding band objects
+int record[BANDSIZE]={0};  // record[i] will be updated to 1 if band[i] has been filled in an object
+band bands[BANDSIZE];      // a global array holding band objects
 
 list <member> MemberList;  
 list <string> instruments;  
@@ -66,7 +66,7 @@ int add_member_global(string name, string band, string instrument, string stayYe
 
 //  -------------------------------------------------------------
 int getbandnumber(string band){   // to return the position of band in the bands[] array
-    for (int i = 0; i < bandsize; i++) {
+    for (int i = 0; i < BANDSIZE; i++) {
         if (bands[i].getBandName() == band) {
             return i;
         }
@@ -77,7 +77,7 @@ int getbandnumber(string band){   // to return the position of band in the bands
 
 void displaybandnums(){
     cout << "You have input information for bands:" << endl << endl;
-    for (int i = 0; i < bandsize; i++)
+    for (int i = 0; i < BANDSIZE; i++)
     {
         if (record[i] == 1)   // record[i] is 1 if the band has been added
         {
@@ -117,7 +117,7 @@ int search() {
 				getchar();
 				cout << "You have the following bands stored: " << endl;
 
-				for (int i = 0; i < bandsize; i++)
+				for (int i = 0; i < BANDSIZE; i++)
 				{
 					if (record[i]==1)
 					{
@@ -574,7 +574,7 @@ int main(int argc, const char * argv[]) {
 #ifdef WINDOWS
                 system("cls");
 #endif
-                for (int i = 0; i < bandsize; i++)
+                for (int i = 0; i < BANDSIZE; i++)
                 {
 					if (record[i] == 1)   // record[i] is 1 if the band has been added
 					{
@@ -670,7 +670,7 @@ void savebands() {
 	}
 	ofstream of;
 	of.open(filename);
-	for (int i = 0; i < bandsize; i++)
+	for (int i = 0; i < BANDSIZE; i++)
 	{
 		if (record[i] == 0)
 		{
