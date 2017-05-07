@@ -26,7 +26,8 @@ Then just follow the instructions of the user-menu
 #use artistDatabase.txt as the artists database input file
 
 
+# What needs to be improved
 
-
+For convenience, we just created text files to record the information as this program's "database". It shall be improved by creating database and accessing it using SQL.
 
 
