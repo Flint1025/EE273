@@ -1,8 +1,8 @@
 
 
-# Band Family Tree program
+# EE273 Class project -- Band Family Tree program
 
-This is a win32 console application project from class EE273:Design of Software Development from University of Strathclyde. It has been demoed to the lecturer. More details of comments and code clean-up will be done soon.
+This is a win32 console application project from EE273:Design of Software Development at University of Strathclyde. It has been demoed to the lecturer. More details of comments and code clean-up will be done soon.
 
 
 # What it dose
@@ -11,7 +11,7 @@ This program allows the user to store information about different bands and rela
 
 # How to run program
 
-Download the zip file. Visual studio 2017 is recommended. After building up the project, one change of setting needs to be done before running the program:
+Visual studio 2017 is recommended. After building up the project, one change of setting needs to be done before running the program:
 
 project properties -> General -> Character Set -> Use multi-byte character set
 

@@ -221,7 +221,7 @@ int modifysingleband(int n, int opt2){
         cin>>opt2;
         cout<<endl;
 
-	string name, instrument, stayYear;
+	    string name, instrument, stayYear;
         int birthyear;
         member mb;
         switch(opt2)
@@ -289,7 +289,7 @@ int modifysingleband(int n, int opt2){
     }
 }
 
-// *************************----------------------------------
+// ************************************************************
 template<typename Out>   // list<string> x = split(string, 'delimeter');
 
 void split(const std::string &s, char delim, Out result) {
@@ -306,7 +306,7 @@ list<std::string> split(const std::string &s, char delim) {
     split(s, delim, std::back_inserter(elems));
     return elems;
 }
-//  ------------------------------------****************************
+//  ***********************************************************
 
 
 int main(int argc, const char * argv[]) {
@@ -322,7 +322,7 @@ int main(int argc, const char * argv[]) {
 	if (option == 'y')
 	{
 		string f[FILELENGTH], f2[FILELENGTH],fname, fname2, fline, fline2;  //fname2, fline2 are used for member file
-        ifstream iF,iF2;
+		ifstream iF,iF2;
 
 
 		// ****** dialog box ****** //
@@ -386,8 +386,8 @@ int main(int argc, const char * argv[]) {
 		while (!iF.eof())
 		{
 			getline(iF, fline);
-            f[count] = fline;
-            count++;
+			f[count] = fline;
+			count++;
 		}
         numberofBands = count/15;    //15 lines for one band
         
@@ -480,17 +480,17 @@ int main(int argc, const char * argv[]) {
 		numberofArtists = count2 / 5;    //5 lines for one artist
 
 		for (int i = 0, j = 0; i<numberofArtists; i++) { //f2[i] holds the content
-            string name, gender, stayYear, instrument;
-            int birYear, number;    // number = how many instruments this person has
-            name = f2[j];
-            birYear = stoi(f2[j+1]);
-            list<string> inst = split(f2[j+2], ',');
-            list<string> Year = split(f2[j+3], ',');
-            list<string> bandslist = split(f2[j+4], ',');
-            member mb(name, birYear, inst, Year, bandslist);
+			string name, gender, stayYear, instrument;
+			int birYear, number;    // number = how many instruments this person has
+			name = f2[j];
+			birYear = stoi(f2[j+1]);
+			list<string> inst = split(f2[j+2], ',');
+			list<string> Year = split(f2[j+3], ',');
+			list<string> bandslist = split(f2[j+4], ',');
+			member mb(name, birYear, inst, Year, bandslist);
             
-            // link to band class  ********#### need to be implemented ###*********
-            //bands[n].addmember....... [done]
+			// link to band class  ********#### need to be implemented ###*********
+			//bands[n].addmember....... [done]
             
             for (list<string>::iterator it = bandslist.begin(); it != bandslist.end(); ++it) {
                 int p = getbandnumber(*it); // p is the position of band in global bands[] array
@@ -581,11 +581,11 @@ int main(int argc, const char * argv[]) {
 						bands[i].showBand2();   // implement another version withour repeated prompt
 						cout << endl;
 					}
-                }
+				}
 				char c;
 				cout << "\n\nInput anything to continue.....";
 				cin >> c;
-			break;
+				break;
 		case 2:
 			system("cls");
 			for (list<member>::iterator it = MemberList.begin(); it != MemberList.end(); ++it) {
