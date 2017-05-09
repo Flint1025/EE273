@@ -268,9 +268,9 @@ int modifysingleband(int n, int opt2){
                 break;
                 //
 
-			case 3:
-				bands[n].showBand();
-				break;
+	    case 3:
+		bands[n].showBand();
+		break;
 
             case 4:  // display the bands which have been stored
                 displaybandnums();
@@ -389,24 +389,24 @@ int main(int argc, const char * argv[]) {
 			f[count] = fline;
 			count++;
 		}
-        numberofBands = count/15;    //15 lines for one band
+                numberofBands = count/15;    //15 lines for one band
         
-        for (int i=0, j=0; i<numberofBands; i++) {    // i controls which band
-            bands[i].setBandName(f[j]);
-            bands[i].setBandYear(stoi(f[j+1]), stoi(f[j+2]));
-            bands[i].setGenres(f[j+3]);
-            bands[i].setDesc(f[j+4]);
+                for (int i=0, j=0; i<numberofBands; i++) {    // i controls which band
+                bands[i].setBandName(f[j]);
+                bands[i].setBandYear(stoi(f[j+1]), stoi(f[j+2]));
+                bands[i].setGenres(f[j+3]);
+                bands[i].setDesc(f[j+4]);
             
-            list<string> songs;
-            for (int q=j+5; q<j+15; q++) {
-                songs.push_back(f[q]);
-            }
-            bands[i].setSongs(songs);
-            j+=15;  // every time finish one band, go to next band, j+=15
-            record[i] = 1;
-			bands[i].status = 1; // 1 means the information about this band is completed. it can be stored into database
-			index = i;  // index of last non-empty position of bands[i]
-        }
+                list<string> songs;
+                for (int q=j+5; q<j+15; q++) {
+                    songs.push_back(f[q]);
+                }
+                bands[i].setSongs(songs);
+                j+=15;  // every time finish one band, go to next band, j+=15
+                record[i] = 1;
+	        bands[i].status = 1; // 1 means the information about this band is completed. it can be stored into database
+	        index = i;  // index of last non-empty position of bands[i]
+          }
         
 
 	//	cout << endl << "Bands database File loaded successfully!" << endl;
