@@ -32,7 +32,9 @@ Then just follow the instructions of the user-menu
 1. By wrapping mutilple levels of `while` and `switch` loops, this program provides a neat, user-friendly user interface regardless of the fact it is a console application.
 2. With WindowsAPI integrated, it provides convenient dialog boxes when reading and saving files.
 
+
 ![reading database](../master/images/input.png)
+
 
 ![saving out new database](../master/images/save.png)
 
