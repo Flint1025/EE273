@@ -11,7 +11,7 @@ This program allows the user to store information about different bands and rela
 
 # How to run program
 
-`git clone https://github.com/Xfan1025/EE273.git'
+`git clone https://github.com/Xfan1025/EE273.git`
 
 or
 
