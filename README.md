@@ -8,15 +8,15 @@ This is a win32 console application project from class EE273:Design of Software 
 
 This program allows the user to store information about different bands and related artists whether from extracting a pre-saved database (pure text file) or from console input. It supports information mofidication&searching based on band, artist or instrument and is able to output new modified database files
 
-*modify stored band*
+*Modify stored band*
 
 ![Optional Text](../master/images/modify.png)
 
-*search information based on artist/band*
+*Search information based on artist/band*
 
 ![Optional Text](../master/images/search.png)
 
-*search information based on instrument type*
+*Search information based on instrument type*
 
 ![Optional Text](../master/images/search_instru.png)
 
@@ -28,7 +28,7 @@ or
 
 Download the zip file. Using visual studio 2017 is recommended. After setting up the project, one change of setting needs to be done before running the program:
 
-project properties -> General -> Character Set -> Use multi-byte character set
+project **properties** -> **General** -> **Character Set** -> **Use multi-byte character set**
 
 Then just follow the instructions of the user-menu
 
