@@ -57,6 +57,6 @@ Then just follow the instructions of the user-menu
 
 # What needs to be improved
 
-For convenience, we just created text files to record the information as this program's "database". It shall be improved by creating database and accessing it using SQL.
+The program's database files were initially created using pure text files. It shall be improved by reformatting the database into csv files.
 
 
