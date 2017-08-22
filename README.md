@@ -35,6 +35,7 @@ Then just follow the instructions of the user-menu
 
 ![reading database](../master/images/input.png)
 
+*Saving out modified database as new files*
 
 ![saving out new database](../master/images/save.png)
 
