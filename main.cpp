@@ -6,6 +6,8 @@
 // Copyright © 2017 Fan Xiaofeng. All rights reserved.
 //
 
+#include "stdafx.h"
+
 
 #include "Band.hpp"
 
