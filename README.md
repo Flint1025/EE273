@@ -1,5 +1,5 @@
 
-
+![Optional Text](../master/image.png)
 # Band Family Tree program
 
 This is a win32 console application project from class EE273:Design of Software Development at University of Strathclyde. It has been assessed by the lecturer.
@@ -8,6 +8,9 @@ This is a win32 console application project from class EE273:Design of Software 
 # What it dose
 
 This program allows the user to store information about different bands and related artists whether from extracting a pre-saved database (pure text file) or from console input. It supports information mofidication&searching based on band, artist or instrument and is able to output new modified database files
+
+![Optional Text](../master/images/modify.png)
+
 
 # How to run program
 
@@ -21,7 +24,20 @@ project properties -> General -> Character Set -> Use multi-byte character set
 
 Then just follow the instructions of the user-menu
 
-# Attention
+![Optional Text](../master/images/UI.png)
+
+
+# Highlights
+
+1. By wrapping mutilple levels of `while` and `switch` loops, this program provides a neat, user-friendly user interface regardless of the fact it is a console application.
+2. With WindowsAPI integrated, it provides convenient dialog boxes when reading and saving files.
+
+![reading database](../master/images/input.png)
+
+![saving out new database](../master/images/save.png)
+
+
+# Note
 
 #use bandDatabase.txt as the band database iput file
 
