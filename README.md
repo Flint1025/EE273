@@ -1,4 +1,4 @@
-
+=
 # Band Family Tree program
 
 This is a win32 console application project from class EE273:Design of Software Development at University of Strathclyde. It has been assessed by the lecturer.
@@ -26,7 +26,9 @@ This program allows the user to store information about different bands and rela
 
 or
 
-Download the zip file. Using visual studio 2017 is recommended. After setting up the project, one change of setting needs to be done before running the program:
+Download the zip file. Using visual studio 2017 is recommended. (I developed it on both my labtop and the university's PC. The reason why the intents are not uniform is because the intention settings are different. It will display normally if load the code in Visual Studio)
+
+After setting up the project, one change of setting needs to be done before running the program:
 
 project **properties** -> **General** -> **Character Set** -> **Use multi-byte character set**
 
@@ -50,9 +52,9 @@ Then just follow the instructions of the user-menu
 
 # Note
 
-#use bandDatabase.txt as the band database iput file
+## use bandDatabase.txt as the band database iput file
 
-#use artistDatabase.txt as the artists database input file
+## use artistDatabase.txt as the artists database input file
 
 
 # What needs to be improved
