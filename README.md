@@ -1,4 +1,4 @@
-=
+
 # Band Family Tree program
 
 This is a win32 console application project from class EE273:Design of Software Development at University of Strathclyde. It has been assessed by the lecturer.
