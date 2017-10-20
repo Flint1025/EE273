@@ -59,6 +59,6 @@ Then just follow the instructions of the user-menu
 
 # What needs to be improved
 
-The program's database files were initially created using pure text files. It shall be improved by reformatting the database into csv files.
+The program's database files were initially created using pure text files. Others cannot use those files without this program or implementing a data parser. It shall be improved by reformatting the database into a common format e.g.(JSON or csv).
 
 
